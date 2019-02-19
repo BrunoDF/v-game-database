@@ -1,4 +1,4 @@
-# movie-database
+# game-database
 
 ## Project setup
 ```
