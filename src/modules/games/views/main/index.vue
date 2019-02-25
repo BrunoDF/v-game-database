@@ -3,27 +3,15 @@
     <span>Games Page</span>
     <p>PS4</p>
     <p v-if="comingSoonForPS4.error">{{ comingSoonForPS4.error }}</p>
-    <ul>
-      <li v-for="gameRelease in comingSoonForPS4.data" :key="gameRelease.id">
-        <img :src="gameRelease.game.cover_path" />
-      </li>
-    </ul>
+    <gdb-card-list :list="comingSoonForPS4.data" />
 
     <p>Xbox</p>
     <p v-if="comingSoonForXbox.error">{{ comingSoonForXbox.error }}</p>
-    <ul>
-      <li v-for="gameRelease in comingSoonForXbox.data" :key="gameRelease.id">
-        <img :src="gameRelease.game.cover_path" />
-      </li>
-    </ul>
+    <gdb-card-list :list="comingSoonForXbox.data" />
 
     <p>Switch</p>
     <p v-if="comingSoonForSwitch.error">{{ comingSoonForSwitch.error }}</p>
-    <ul>
-      <li v-for="gameRelease in comingSoonForSwitch.data" :key="gameRelease.id">
-        <img :src="gameRelease.game.cover_path" />
-      </li>
-    </ul>
+    <gdb-card-list :list="comingSoonForSwitch.data" />
 </div>
 </template>
 
@@ -34,7 +22,12 @@ import { IGDB_PLATFORMS } from '@/config/constants'
 
 import DisposeBag from '@/config/dispose-bag'
 
+import GdbCardList from '../../../shared/components/gdb-card-list'
+
 export default {
+  components: {
+    'gdb-card-list': GdbCardList
+  },
   created() {
     this.disposeBag = new DisposeBag()
   },

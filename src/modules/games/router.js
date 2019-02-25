@@ -5,6 +5,6 @@ router.addRoutes([
     path: '/',
     name: 'games',
     meta: { auth: true },
-    component: () => import(/* webpackChunkName: 'games' */ './containers/main')
+    component: () => import(/* webpackChunkName: 'games' */ './views/main')
   }
 ])
