@@ -1,7 +1,7 @@
 <template>
   <div class="gdb-card-list">
     <div v-for="item in list" :key="item.id">
-      <gdb-card :name="item.game.name" :imgPath="item.game.cover_path" />
+      <gdb-card :name="item.name" :imgPath="item.cover_path" />
     </div>
   </div>
 </template>
