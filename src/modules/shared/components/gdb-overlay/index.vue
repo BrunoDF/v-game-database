@@ -23,7 +23,6 @@
   font-size: 1.6vh;
   font-weight: 700;
   padding: 5px;
-  box-sizing: border-box;
 }
 </style>
 

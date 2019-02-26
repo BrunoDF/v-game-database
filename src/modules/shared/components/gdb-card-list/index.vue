@@ -1,17 +1,30 @@
 <template>
-  <div class="gdb-card-list">
-    <div v-for="item in list" :key="item.id">
-      <gdb-card :name="item.name" :imgPath="item.cover_path" />
+  <div class="gdb-card-list" v-wheel-horizontal-scroll>
+    <looping-rhombuses-spinner
+      v-if="!list.length"
+      :animation-duration="2000"
+      :size="60"
+      :color="'#FFFFFF'"
+    />
+    <div class="gdb-card-list-item" v-for="item in list" :key="item.id">
+      <gdb-card :game="item" />
     </div>
   </div>
 </template>
 
 <script>
+import { LoopingRhombusesSpinner } from 'epic-spinners'
+import WheelHorizontalScroll from '../../directives/wheel-horizontal-scroll.directive'
+
 import GdbCard from '../gdb-card'
 
 export default {
+  directives: {
+    ...WheelHorizontalScroll
+  },
   components: {
-    'gdb-card': GdbCard
+    'gdb-card': GdbCard,
+    'looping-rhombuses-spinner': LoopingRhombusesSpinner
   },
   props: {
     list: { type: Array, required: true }
@@ -20,14 +33,27 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+$cardsPerView: 4;
+
 .gdb-card-list {
-  width: 80%;
-  margin: 0 auto;
-  padding: 50px 0;
   display: flex;
-  flex-flow: flex-wrap;
-  flex-direction: row;
-  flex-flow: wrap;
+  min-height: 220px;
+  justify-content: left;
+  align-items: center;
+  flex-grow: 1;
+  overflow-x: auto;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  .gdb-card-list-item {
+    flex: 0 0 (100% / #{ $cardsPerView });
+  }
+
+  .looping-rhombuses-spinner {
+    margin: 0 auto;
+  }
 }
 </style>
 

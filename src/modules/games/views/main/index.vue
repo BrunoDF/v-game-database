@@ -1,17 +1,19 @@
 <template>
-  <div>
-    <span>Games Page</span>
-    <p>PS4</p>
-    <p v-if="mostPopularForPS4.error">{{ mostPopularForPS4.error }}</p>
-    <gdb-card-list :list="mostPopularForPS4.data" />
+  <div class="gdb-games-view">
+    <gdb-platform-wrapper :platform="PS4">
+      <p v-if="mostPopularForPS4.error">{{ mostPopularForPS4.error }}</p>
+      <gdb-card-list :list="mostPopularForPS4.data" />
+    </gdb-platform-wrapper>
 
-    <p>Xbox</p>
-    <p v-if="mostPopularForXbox.error">{{ mostPopularForXbox.error }}</p>
-    <gdb-card-list :list="mostPopularForXbox.data" />
+    <gdb-platform-wrapper :platform="XONE">
+      <p v-if="mostPopularForXbox.error">{{ mostPopularForXbox.error }}</p>
+      <gdb-card-list :list="mostPopularForXbox.data" />
+    </gdb-platform-wrapper>
 
-    <p>Switch</p>
-    <p v-if="mostPopularForSwitch.error">{{ mostPopularForSwitch.error }}</p>
-    <gdb-card-list :list="mostPopularForSwitch.data" />
+    <gdb-platform-wrapper :platform="SWITCH" >
+      <p v-if="mostPopularForSwitch.error">{{ mostPopularForSwitch.error }}</p>
+      <gdb-card-list :list="mostPopularForSwitch.data" />
+    </gdb-platform-wrapper>
 </div>
 </template>
 
@@ -22,10 +24,12 @@ import { IGDB_PLATFORMS } from '@/config/constants'
 
 import DisposeBag from '@/config/dispose-bag'
 
+import GdbPlatformWrapper from '../../components/gdb-platform-wrapper'
 import GdbCardList from '../../../shared/components/gdb-card-list'
 
 export default {
   components: {
+    'gdb-platform-wrapper' : GdbPlatformWrapper,
     'gdb-card-list': GdbCardList
   },
   created() {
@@ -41,6 +45,13 @@ export default {
   beforeDestroy() {
     this.disposeBag.cancel('Platforms requests canceled')
   },
+  data() {
+    return {
+      PS4: IGDB_PLATFORMS.PS4,
+      XONE: IGDB_PLATFORMS.XBOX_ONE,
+      SWITCH: IGDB_PLATFORMS.SWITCH
+    }
+  },
   computed: {
     mostPopularForPS4() {
       return GameStore.state.mostPopular[IGDB_PLATFORMS.PS4]
@@ -54,4 +65,13 @@ export default {
   }
 }
 </script>
+
+<style lang="scss" scoped>
+.gdb-games-view {
+  display: flex;
+  flex-direction: column;
+  height: inherit;
+}
+</style>
+
 

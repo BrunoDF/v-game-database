@@ -6,7 +6,7 @@ const API = {
     const endpoint = '/games'
 
     const data = `
-      fields id,name,cover.image_id,popularity;
+      fields id,name,cover.image_id,popularity,rating;
       where platforms = ${platform};
       sort popularity desc;
     `

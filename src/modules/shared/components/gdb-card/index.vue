@@ -1,59 +1,69 @@
 <template>
-  <div class="gdb-card gdb-card-skew-left" @mouseenter="toggleExtraInfo" @mouseleave="toggleExtraInfo">
-    <overlay v-if="showExtraInfo">
-      <template slot="text">{{ name }}</template>
-    </overlay>
-    <img :src="imgPath" />
+  <div class="gdb-card">
+    <div class="gdb-card-image">
+      <gdb-image :src="game.cover_path" />
+    </div>
+    <div class="gdb-card-info">
+      {{ game.name }}
+      {{ game.rating }}
+    </div>
   </div>
 </template>
 
 <script>
-import Overlay from '../gdb-overlay';
+import GdbImage from '../gdb-image'
 
 export default {
   components: {
-    'overlay': Overlay
+    'gdb-image': GdbImage
   },
   props: {
-    name: { type: String, required: true },
-    imgPath: { type: String }
+    game: { type: Object, required: true }
   },
   data() {
     return {
-      showExtraInfo: false
     }
   },
-  methods: {
-    toggleExtraInfo: function() {
-      this.showExtraInfo = !this.showExtraInfo
-    }
-  }
 }
 </script>
 
 <style lang="scss" scoped>
-$minCardSize: 180px;
+$imageSize: 160px;
+
 .gdb-card {
-  background-color: #ececec;
   color: $darkGray;
-  border: 1px solid $borderColor;
-  border-radius: 5px;
-  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.1);
   margin: 10px;
-  padding: 10px;
+  padding-bottom: 10px;
   transition: all 100ms ease-in-out;
   position: relative;
-  min-height: $minCardSize;
-  width: $minCardSize;
+  overflow: hidden;
+  height: 200px;
   z-index: 0;
 
-  &.gdb-card-skew-left {
-    transform: skewY(-10deg);
+  .gdb-card-image {
+    position: absolute;
+    border-radius: 5px;
+    overflow: hidden;
+    height: $imageSize;
+    width: $imageSize;
+    top: 50%;
+    left: 0;
+    transform: translate3d(0,-50%,0);
+    z-index: 1;
   }
 
-  &:hover {
-    transform: scale3d(1.5, 1.5, 1) skewY(0);
-    z-index: 1;
+  .gdb-card-info {
+    $spacing: 20px;
+
+    background: linear-gradient(135deg, #FFFFFF 0%,#FFFFFF 50%,$secondaryColor 100%);
+    padding: $spacing $spacing $spacing ($imageSize - $spacing) ;
+    border-radius: 10px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 100%;
+    font-size: 1.4vw;
+    width: calc(100% - #{$imageSize / 4});
   }
 }
 </style>

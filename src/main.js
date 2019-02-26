@@ -17,6 +17,9 @@ import store from './config/store'
 // i18n
 import i18n from './config/i18n'
 
+// FontAwesome
+import './config/font-awesome'
+
 // Axios
 import './config/axios'
 
