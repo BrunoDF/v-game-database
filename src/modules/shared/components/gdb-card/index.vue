@@ -1,13 +1,15 @@
 <template>
-  <div class="gdb-card">
-    <div class="gdb-card-image">
-      <gdb-image :src="game.cover_path" />
+  <router-link :to="{ name: 'game-detail', params: { id: game.id } }">
+    <div class="gdb-card" >
+      <div class="gdb-card-image">
+        <gdb-image :src="game.cover_path" />
+      </div>
+      <div class="gdb-card-info">
+        {{ game.name }}
+        {{ game.rating }}
+      </div>
     </div>
-    <div class="gdb-card-info">
-      {{ game.name }}
-      {{ game.rating }}
-    </div>
-  </div>
+  </router-link>
 </template>
 
 <script>
@@ -19,11 +21,7 @@ export default {
   },
   props: {
     game: { type: Object, required: true }
-  },
-  data() {
-    return {
-    }
-  },
+  }
 }
 </script>
 

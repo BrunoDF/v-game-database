@@ -1,12 +1,28 @@
 <template>
   <div id="app">
-    <!-- <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div> -->
-    <router-view />
+    <router-view name="page" />
+
+    <gdb-modal v-if="showModal">
+      <router-view name="modal" />
+    </gdb-modal>
   </div>
 </template>
+
+<script>
+import GdbModal from './modules/shared/components/gdb-modal'
+
+export default {
+  components: {
+    'gdb-modal': GdbModal
+  },
+  computed: {
+    showModal() {
+      return this.$route.meta.showModal
+    }
+  }
+}
+</script>
+
 
 <style lang="scss" scoped>
 #app {
