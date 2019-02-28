@@ -1,5 +1,5 @@
 <template>
-  <router-link :to="{ name: 'game-detail', params: { id: game.id } }">
+  <router-link :to="{ name: 'game-details', params: { id: game.id } }">
     <div class="gdb-card" >
       <div class="gdb-card-image">
         <gdb-image :src="game.cover_path" />

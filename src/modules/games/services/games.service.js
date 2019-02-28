@@ -6,6 +6,32 @@ import '../types/platform.d'
 
 class GamesService {
 
+  /** @param {number} id */
+  async details(id, opts) {
+    try {
+      const response = await GamesAPI.details(id, opts)
+
+      /** @type {Game} */
+      let game
+
+      if (response && response.data) {
+        [ game ] = response.data
+
+        if (game.cover)
+          game.cover_path = this.formatUrl(game.cover.image_id)
+        else
+          game.cover_path = IGDB_NO_COVER_IMAGE_BASE_URL;
+
+        return game
+      }
+
+      return game
+    } catch(err) {
+      console.error(err)
+      throw err
+    }
+  }
+
   /** @param {Platform} platform */
   async mostPopularByPlatform(platform, opts) {
     try {

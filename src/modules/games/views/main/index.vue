@@ -1,5 +1,5 @@
 <template>
-  <div class="gdb-games-view">
+  <div class="gdb-games-main-view">
     <gdb-platform-wrapper :platform="PS4">
       <p v-if="mostPopularForPS4.error">{{ mostPopularForPS4.error }}</p>
       <gdb-card-list :list="mostPopularForPS4.data" />
@@ -18,8 +18,6 @@
 </template>
 
 <script>
-import GameStore from '../../store'
-
 import { IGDB_PLATFORMS } from '@/config/constants'
 
 import DisposeBag from '@/config/dispose-bag'
@@ -54,20 +52,20 @@ export default {
   },
   computed: {
     mostPopularForPS4() {
-      return GameStore.state.mostPopular[IGDB_PLATFORMS.PS4]
+      return this.$store.state.games.mostPopular[IGDB_PLATFORMS.PS4]
     },
     mostPopularForXbox() {
-      return GameStore.state.mostPopular[IGDB_PLATFORMS.XBOX_ONE]
+      return this.$store.state.games.mostPopular[IGDB_PLATFORMS.XBOX_ONE]
     },
     mostPopularForSwitch() {
-      return GameStore.state.mostPopular[IGDB_PLATFORMS.SWITCH]
+      return this.$store.state.games.mostPopular[IGDB_PLATFORMS.SWITCH]
     }
   }
 }
 </script>
 
 <style lang="scss" scoped>
-.gdb-games-view {
+.gdb-games-main-view {
   display: flex;
   flex-direction: column;
   height: inherit;

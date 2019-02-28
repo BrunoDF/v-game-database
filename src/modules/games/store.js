@@ -9,6 +9,11 @@ import './types/game.d';
 import './types/platform.d';
 
 const state = {
+  details: {
+    data: null,
+    loading: false,
+    error: null
+  },
   mostPopular: {
     [IGDB_PLATFORMS.PS4]: {
       /** @type {Game[]} */
@@ -34,6 +39,17 @@ const state = {
 const getters = {}
 
 const actions = {
+  async fetchDetails({ commit, state }, { id, cancelToken }) {
+    try {
+      commit('fetchDetails')
+      const game = await GameService.details(id, { cancelToken })
+      commit('setDetails', game)
+      return state.details
+    } catch(error) {
+      commit('errorDetails', error)
+    }
+  },
+
   async fetchMostPopular({ commit, state }, { platform, cancelToken }) {
     try {
       commit('fetchMostPopular', { platform })
@@ -47,6 +63,22 @@ const actions = {
 }
 
 const mutations = {
+  fetchDetails(state) {
+    const details = { loading: true, data: null, error: null }
+    Vue.set(state, 'details', details)
+  },
+
+  /** @param {Game} game */
+  setDetails(state, game) {
+    const details = { loading: false, data: game, error: null }
+    Vue.set(state, 'details', details)
+  },
+
+  errorDetails(state, error) {
+    const details = { loading: false, data: null, error }
+    Vue.set(state, 'details', details)
+  },
+
   fetchMostPopular(state, { platform }) {
     const mostPopular = { loading: true, data: [], error: null }
     Vue.set(state.mostPopular, platform, mostPopular)
@@ -63,7 +95,7 @@ const mutations = {
   errorMostPopular(state, { error, platform }) {
     const mostPopular = { loading: false, data: [], error }
     Vue.set(state.mostPopular, platform, mostPopular)
-  },
+  }
 }
 
 const module = {
