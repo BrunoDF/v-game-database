@@ -15,7 +15,7 @@
 export default {
   computed: {
     title()  {
-      let title;
+      let title
       if (this.$route.meta.modalOptions)
         title = this.$route.meta.modalOptions.title
 

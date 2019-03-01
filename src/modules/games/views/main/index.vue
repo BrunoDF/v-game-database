@@ -22,8 +22,8 @@ import { IGDB_PLATFORMS } from '@/config/constants'
 
 import DisposeBag from '@/config/dispose-bag'
 
-import GdbPlatformWrapper from '../../components/gdb-platform-wrapper'
-import GdbCardList from '../../../shared/components/gdb-card-list'
+import GdbPlatformWrapper from '@/modules/games/components/gdb-platform-wrapper'
+import GdbCardList from '@/modules/shared/components/gdb-card-list'
 
 export default {
   components: {

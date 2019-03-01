@@ -13,6 +13,8 @@
 </template>
 
 <script>
+// import Store from '@/config/store'
+
 import { LoopingRhombusesSpinner } from 'epic-spinners'
 
 import DisposeBag from '@/config/dispose-bag'
@@ -27,6 +29,24 @@ export default {
       vm.$store.dispatch('games/fetchDetails', { id, cancelToken })
     })
   },
+  // async beforeRouteEnter(to, from, next) {
+  //   const disposeBag = new DisposeBag()
+
+  //   const { id } = to.params
+  //   const cancelToken = disposeBag.token
+  //   await Store.dispatch('games/fetchDetails', { id, cancelToken })
+
+  //   next(vm => vm.disposeBag = disposeBag)
+  // },
+  // beforeRouteUpdate(to, from, next) {
+  //   this.disposeBag = new DisposeBag()
+
+  //   const { id } = to.params
+  //   const cancelToken = this.disposeBag.token
+  //   this.$store.dispatch('games/fetchDetails', { id, cancelToken })
+
+  //   next()
+  // },
   beforeRouteLeave(to, from, next) {
     this.disposeBag.cancel('Game detail request canceled')
     next()
