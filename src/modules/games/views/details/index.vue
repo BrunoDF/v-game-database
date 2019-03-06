@@ -1,7 +1,12 @@
 <template>
   <div class="gdb-games-details-view">
     <div v-if="game.data" class="gdb-games-details-view-content">
-      <span>{{ game.data.name }}</span>
+      <div class="gdb-games-details-view-content-image">
+        <gdb-image :src="game.data.cover_path"></gdb-image>
+      </div>
+      <div class="gdb-games-details-view-content-info">
+        <span>{{ game.data.name }}</span>
+      </div>
     </div>
     <looping-rhombuses-spinner
       v-else
@@ -16,6 +21,8 @@
 // import Store from '@/config/store'
 
 import { LoopingRhombusesSpinner } from 'epic-spinners'
+
+import GdbImage from '@/modules/shared/components/gdb-image'
 
 import DisposeBag from '@/config/dispose-bag'
 
@@ -52,6 +59,7 @@ export default {
     next()
   },
   components: {
+    'gdb-image': GdbImage,
     'looping-rhombuses-spinner': LoopingRhombusesSpinner
   },
   computed: {
@@ -70,6 +78,16 @@ export default {
     display: flex;
     align-items: center;
     flex-wrap: nowrap;
+    flex-flow: column;
+
+    .gdb-games-details-view-content-image {
+      width: 300px;
+    }
+
+    .gdb-games-details-view-content-info {
+      margin: 20px auto;
+      font-size: 24px;
+    }
   }
 
   .looping-rhombuses-spinner {

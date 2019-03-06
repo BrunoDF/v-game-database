@@ -39,23 +39,21 @@ const state = {
 const getters = {}
 
 const actions = {
-  async fetchDetails({ commit, state }, { id, cancelToken }) {
+  async fetchDetails({ commit }, { id, cancelToken }) {
     try {
       commit('fetchDetails')
       const game = await GameService.details(id, { cancelToken })
       commit('setDetails', game)
-      return state.details
     } catch(error) {
       commit('errorDetails', error)
     }
   },
 
-  async fetchMostPopular({ commit, state }, { platform, cancelToken }) {
+  async fetchMostPopular({ commit }, { platform, cancelToken }) {
     try {
       commit('fetchMostPopular', { platform })
       const games = await GameService.mostPopularByPlatform(platform, { cancelToken })
       commit('setMostPopular', { games, platform })
-      return state.mostPopular[platform]
     } catch(error) {
       commit('errorMostPopular', { error, platform })
     }

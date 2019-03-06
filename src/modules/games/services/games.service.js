@@ -1,5 +1,5 @@
 import GamesAPI from '../apis/games.api'
-import { IGDB_IMAGE_BASE_URL, IGDB_NO_COVER_IMAGE_BASE_URL } from '../../../config/constants'
+import { IGDB_THUMB_BASE_URL, IGDB_IMAGE_BASE_URL, IGDB_NO_COVER_IMAGE_BASE_URL } from '../../../config/constants'
 
 import '../types/game.d'
 import '../types/platform.d'
@@ -17,10 +17,8 @@ class GamesService {
       if (response && response.data) {
         [ game ] = response.data
 
-        if (game.cover)
-          game.cover_path = this.formatUrl(game.cover.image_id)
-        else
-          game.cover_path = IGDB_NO_COVER_IMAGE_BASE_URL;
+        const image_id = game.cover && game.cover.image_id
+        game.cover_path = formatImageUrl(image_id)
 
         return game
       }
@@ -42,10 +40,8 @@ class GamesService {
 
       if (response && response.data) {
         games = response.data.map(game => {
-          if (game.cover)
-            game.cover_path = this.formatUrl(game.cover.image_id)
-          else
-            game.cover_path = IGDB_NO_COVER_IMAGE_BASE_URL;
+          const image_id = game.cover && game.cover.image_id
+          game.cover_path = formatThumbUrl(image_id)
 
           return game
         })
@@ -58,10 +54,14 @@ class GamesService {
     }
   }
 
-  formatUrl(image_id) {
-    return IGDB_IMAGE_BASE_URL.replace(/%s/, image_id)
-  }
+}
 
+function formatThumbUrl(image_id) {
+  return image_id ? IGDB_THUMB_BASE_URL.replace(/%s/, image_id) : IGDB_NO_COVER_IMAGE_BASE_URL
+}
+
+function formatImageUrl(image_id) {
+  return image_id ? IGDB_IMAGE_BASE_URL.replace(/%s/, image_id) : IGDB_NO_COVER_IMAGE_BASE_URL
 }
 
 export default new GamesService()

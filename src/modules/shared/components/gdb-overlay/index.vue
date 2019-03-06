@@ -20,7 +20,7 @@
   align-items: center;
   justify-content: center;
   text-align: center;
-  font-size: 1.6vh;
+  font-size: 16px;
   font-weight: 700;
   padding: 5px;
 }

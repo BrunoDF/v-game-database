@@ -44,24 +44,26 @@ $imageSize: 160px;
     overflow: hidden;
     height: $imageSize;
     width: $imageSize;
-    top: 50%;
+    bottom: 5px;
     left: 0;
-    transform: translate3d(0,-50%,0);
     z-index: 1;
   }
 
   .gdb-card-info {
-    $spacing: 20px;
+    $spacing: 10px;
 
     background: linear-gradient(135deg, #FFFFFF 0%,#FFFFFF 50%,$secondaryColor 100%);
-    padding: $spacing $spacing $spacing ($imageSize - $spacing) ;
+    padding: $spacing $spacing ($imageSize + $spacing + ($spacing / 2));
     border-radius: 10px;
     position: absolute;
     top: 0;
     right: 0;
     height: 100%;
-    font-size: 1.4vw;
+    font-size: 18px;
     width: calc(100% - #{$imageSize / 4});
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
   }
 }
 </style>
