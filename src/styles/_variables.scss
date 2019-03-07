@@ -13,6 +13,9 @@ $buttonHeight: 56px;
 $buttonSmallHeight: 40px;
 $buttonFontSize: 20px;
 
+$cardWidth: 350px;
+$cardHeight: 500px;
+
 // COLORS
 $primaryColor: #FED93A;
 $highlightColor: #FC4B38;
@@ -20,4 +23,5 @@ $secondaryColor: #CCCCCC;
 
 // EXTRA COLORS
 $borderColor: darken($secondaryColor, 10%);
-$darkGray: #504747;
+$darkMidGray: #535353;
+$darkDeepGray: #333333;

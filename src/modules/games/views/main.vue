@@ -1,19 +1,9 @@
 <template>
   <div class="gdb-games-main-view">
-    <gdb-platform-wrapper :platform="PS4">
-      <p v-if="mostPopularForPS4.error">{{ mostPopularForPS4.error }}</p>
-      <gdb-card-list :list="mostPopularForPS4.data" />
-    </gdb-platform-wrapper>
-
-    <gdb-platform-wrapper :platform="XONE">
-      <p v-if="mostPopularForXbox.error">{{ mostPopularForXbox.error }}</p>
-      <gdb-card-list :list="mostPopularForXbox.data" />
-    </gdb-platform-wrapper>
-
-    <gdb-platform-wrapper :platform="SWITCH" >
+    <gdb-card-wrapper>
       <p v-if="mostPopularForSwitch.error">{{ mostPopularForSwitch.error }}</p>
       <gdb-card-list :list="mostPopularForSwitch.data" />
-    </gdb-platform-wrapper>
+    </gdb-card-wrapper>
 </div>
 </template>
 
@@ -22,12 +12,12 @@ import { IGDB_PLATFORMS } from '@/config/constants'
 
 import DisposeBag from '@/config/dispose-bag'
 
-import GdbPlatformWrapper from '@/modules/games/components/gdb-platform-wrapper'
+import GdbCardWrapper from '@/modules/games/components/gdb-card-wrapper'
 import GdbCardList from '@/modules/shared/components/gdb-card-list'
 
 export default {
   components: {
-    'gdb-platform-wrapper' : GdbPlatformWrapper,
+    'gdb-card-wrapper' : GdbCardWrapper,
     'gdb-card-list': GdbCardList
   },
   created() {

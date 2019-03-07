@@ -29,38 +29,43 @@ export default {
 $imageSize: 160px;
 
 .gdb-card {
-  color: $darkGray;
-  margin: 10px;
-  padding-bottom: 10px;
-  transition: all 100ms ease-in-out;
-  position: relative;
+  color: white;
+  background: linear-gradient(135deg, #{$darkMidGray} 0%, #{$darkDeepGray} 100%);
+  height: $cardHeight;
+  width: $cardWidth;
+  margin: 0 auto;
   overflow: hidden;
-  height: 200px;
-  z-index: 0;
+  border-radius: 10px;
+  box-shadow: 3px 3px 20px rgba(0, 0, 0, .5);
+  position: relative;
+
+  &:hover {
+    .gdb-card-image {
+      opacity: .3;
+    }
+  }
 
   .gdb-card-image {
+    opacity: .1;
     position: absolute;
-    border-radius: 5px;
-    overflow: hidden;
-    height: $imageSize;
-    width: $imageSize;
-    bottom: 5px;
+    height: 100%;
+    width: 100%;
+    top: 0;
     left: 0;
-    z-index: 1;
+    transition: opacity 0.1s ease-in;
   }
 
   .gdb-card-info {
     $spacing: 10px;
 
-    background: linear-gradient(135deg, #FFFFFF 0%,#FFFFFF 50%,$secondaryColor 100%);
     padding: $spacing $spacing ($imageSize + $spacing + ($spacing / 2));
     border-radius: 10px;
     position: absolute;
     top: 0;
     right: 0;
     height: 100%;
+    width: 100%;
     font-size: 18px;
-    width: calc(100% - #{$imageSize / 4});
     white-space: nowrap;
     text-overflow: ellipsis;
     overflow: hidden;

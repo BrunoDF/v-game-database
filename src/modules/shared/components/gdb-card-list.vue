@@ -33,7 +33,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-$cardsPerView: 4;
+$cardSpacing: 30px;
 
 .gdb-card-list {
   display: flex;
@@ -42,13 +42,14 @@ $cardsPerView: 4;
   align-items: center;
   flex-grow: 1;
   overflow-x: auto;
+  padding: 20px 0;
 
   &::-webkit-scrollbar {
     display: none;
   }
 
   .gdb-card-list-item {
-    flex: 0 0 (100% / #{ $cardsPerView });
+    flex: 0 0 $cardWidth + $cardSpacing;
   }
 
   .looping-rhombuses-spinner {
