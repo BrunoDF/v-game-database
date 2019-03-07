@@ -3,7 +3,7 @@ import Vue from 'vue'
 import store from '@/config/store'
 import GameService from './services/games.service'
 
-import { IGDB_PLATFORMS } from '../../config/constants'
+import { IGDB_PLATFORMS } from '@/config/constants'
 
 import './types/game.d';
 import './types/platform.d';

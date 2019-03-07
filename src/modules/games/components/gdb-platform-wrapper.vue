@@ -8,7 +8,7 @@
 </template>
 
 <script>
-import { IGDB_PLATFORMS } from '../../../..//config/constants'
+import { IGDB_PLATFORMS } from '@/config/constants'
 
 export default {
   props: {

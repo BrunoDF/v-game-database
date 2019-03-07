@@ -1,5 +1,5 @@
 import GamesAPI from '../apis/games.api'
-import { IGDB_THUMB_BASE_URL, IGDB_IMAGE_BASE_URL, IGDB_NO_COVER_IMAGE_BASE_URL } from '../../../config/constants'
+import { IGDB_THUMB_BASE_URL, IGDB_IMAGE_BASE_URL, IGDB_NO_COVER_IMAGE_BASE_URL } from '@/config/constants'
 
 import '../types/game.d'
 import '../types/platform.d'

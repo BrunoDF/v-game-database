@@ -14,9 +14,9 @@
 
 <script>
 import { LoopingRhombusesSpinner } from 'epic-spinners'
-import WheelHorizontalScroll from '../../directives/wheel-horizontal-scroll.directive'
+import WheelHorizontalScroll from '@/modules/shared/directives/wheel-horizontal-scroll.directive'
 
-import GdbCard from '../gdb-card'
+import GdbCard from './gdb-card'
 
 export default {
   directives: {
