@@ -2,7 +2,7 @@ import router from '@/config/router'
 
 router.addRoutes([
   {
-    path: '/',
+    path: '/game',
     name: 'games',
     meta: { auth: true },
     components: {

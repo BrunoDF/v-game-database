@@ -1,6 +1,7 @@
 // STYLES
 import 'normalize.css'
 import '@/styles/general.scss'
+import 'vuetify/dist/vuetify.min.css'
 
 // LIBS
 import Vue from 'vue'
@@ -25,6 +26,12 @@ import './config/axios'
 
 // MODULES
 import './config/modules'
+
+// Vuetify
+import './config/vuetify'
+
+// Vuelidate
+import './config/vuelidate'
 
 // CONFIG
 Vue.config.productionTip = false
