@@ -1,17 +1,14 @@
 <template>
-  <form @submit.prevent="submit" class="gdb-login-form">
+  <div class="gdb-login-form">
     <div class="gdb-form-field-wrapper">
       <label for="username" class="gdb-login-form-label-username">
         Username
       </label>
-      <input
-        type="text"
-        name="username"
-        class="gdb-login-form-field-username"
-        v-model.trim="$v.username.$model"
-      />
-      <div v-if="$v.username.$error">
-        <span v-if="!$v.username.required">Campo obrigatório</span>
+
+      <text-input name="username" class-name="gdb-login-form-field-username" v-model.trim="value.username" :validation="validation.username" />
+
+      <div v-if="validation.username.$error">
+        <span v-if="!validation.username.required">Campo obrigatório</span>
       </div>
     </div>
 
@@ -19,46 +16,28 @@
       <label for="password" class="gdb-login-form-label-password">
         Password
       </label>
-      <input
-        type="text"
-        name="password"
-        class="gdb-login-form-field-password"
-        :value="password"
-        @input="setPassword($event.target.value)"
-      />
-      <div v-if="$v.password.$error">
-        <span v-if="!$v.password.$required">Campo obrigatório</span>
+
+      <password-input name="password" class-name="gdb-login-form-field-password" v-model.trim="value.password" :validation="validation.password" />
+
+      <div v-if="validation.password.$error">
+        <span v-if="!validation.password.$required">Campo obrigatório</span>
       </div>
     </div>
-
-    <button type="submit">Login</button>
-  </form>
+  </div>
 </template>
 
 <script>
-import { required } from 'vuelidate/lib/validators'
+import TextInput from '@/modules/shared/components/gdb-form-components/gdb-text-input'
+import PasswordInput from '@/modules/shared/components/gdb-form-components/gdb-password-input'
 
 export default {
-  data() {
-    return {
-      username: '',
-      password: ''
-    }
+  components: {
+    'text-input': TextInput,
+    'password-input': PasswordInput
   },
-  validations: {
-    username: { required },
-    password: { required }
-  },
-  methods: {
-    setPassword(value) {
-      this.password = value
-      this.$v.password.$touch()
-    },
-
-    submit(e) {
-      console.log(e)
-      console.log(this.$v.$invalid)
-    }
+  props: {
+    value      : { type: Object, required: true },
+    validation : { type: Object, required: true }
   }
 }
 </script>
