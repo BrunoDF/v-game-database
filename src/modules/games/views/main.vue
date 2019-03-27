@@ -1,10 +1,12 @@
 <template>
-  <div class="gdb-games-main-view">
-    <gdb-card-wrapper>
-      <p v-if="mostPopularForSwitch.error">{{ mostPopularForSwitch.error }}</p>
-      <gdb-card-list :list="mostPopularForSwitch.data" />
-    </gdb-card-wrapper>
-</div>
+  <v-layout row align-center>
+    <v-flex xs12>
+      <gdb-card-wrapper>
+        <p v-if="mostPopularForSwitch.error">{{ mostPopularForSwitch.error }}</p>
+        <gdb-card-list :list="mostPopularForSwitch.data" />
+      </gdb-card-wrapper>
+    </v-flex>
+  </v-layout>
 </template>
 
 <script>
@@ -53,13 +55,5 @@ export default {
   }
 }
 </script>
-
-<style lang="scss" scoped>
-.gdb-games-main-view {
-  display: flex;
-  flex-direction: column;
-  height: inherit;
-}
-</style>
 
 

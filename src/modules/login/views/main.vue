@@ -1,19 +1,13 @@
 <template>
-  <v-form @submit.prevent="submit" novalidate>
-    <v-container>
-      <v-layout row wrap>
-        <v-flex xs12 md4 offset-md4>
-          <login-form v-model="form.loginForm" :validation="$v.form.loginForm" />
-        </v-flex>
-      </v-layout>
+  <v-layout row wrap align-center>
+    <v-flex xs8 offset-xs2 md4 offset-md4>
+      <v-form @submit.prevent="submit" novalidate>
+        <login-form v-model="form.loginForm" :validation="$v.form.loginForm" />
 
-      <v-layout row wrap>
-        <v-flex xs12 md2 offset-md5>
-          <v-btn block outline color="indigo" type="submit">Login</v-btn>
-        </v-flex>
-      </v-layout>
-    </v-container>
-  </v-form>
+        <v-btn block outline color="indigo" type="submit">Login</v-btn>
+      </v-form>
+    </v-flex>
+  </v-layout>
 </template>
 
 <script>

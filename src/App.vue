@@ -1,11 +1,13 @@
 <template>
-  <div id="app">
-    <router-view name="page" />
+  <v-app>
+    <v-container fluid fill-height>
+      <router-view name="page" />
 
-    <gdb-modal v-if="showModal">
-      <router-view name="modal" />
-    </gdb-modal>
-  </div>
+      <gdb-modal v-if="showModal">
+        <router-view name="modal" />
+      </gdb-modal>
+    </v-container>
+  </v-app>
 </template>
 
 <script>
@@ -22,10 +24,3 @@ export default {
   }
 }
 </script>
-
-
-<style lang="scss" scoped>
-#app {
-  height: inherit;
-}
-</style>

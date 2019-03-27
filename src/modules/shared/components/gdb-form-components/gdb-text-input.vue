@@ -2,19 +2,18 @@
   <v-text-field
     type="text"
     v-model="text"
-    :label="label"
+    :label="name"
     :class="className"
-    :error="validation.$anyError"
-    :error-messages="getErrors"
+    :error-messages="formErrors"
     outline
   ></v-text-field>
 </template>
 
 <script>
-import FormMixin from '@/modules/shared/mixins/form.mixin'
+import FormErrorsMixin from '@/modules/shared/mixins/form-errors.mixin'
 
 export default {
-  mixins: [ FormMixin ],
+  mixins: [ FormErrorsMixin ],
   props: {
     name       : { type: String, default: 'text' },
     className  : { type: String, default: 'gdb-text-input' },

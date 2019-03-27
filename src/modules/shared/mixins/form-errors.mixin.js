@@ -1,21 +1,16 @@
-const formErrors = {
+const formErrorsMsgs = {
   required: 'Campo obrigatório'
 }
 
 const computed = {
-  label() {
-    const [ firstLetter, ...remainings ] = this.name
-    return firstLetter.toUpperCase() + remainings.join('')
-  },
-
-  getErrors() {
+  formErrors() {
     const errors = []
     const validationParams = Object.values(this.validation.$params)
 
-    if (this.validation.$error || this.validation.$anyError || this.validation.$invalid)
+    if (this.validation.$error || this.validation.$anyError)
       validationParams.forEach(val => {
         const errorKey = val.type
-        const errorMsg =  formErrors[errorKey]
+        const errorMsg = formErrorsMsgs[errorKey]
         errors.push(errorMsg)
       })
 

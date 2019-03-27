@@ -1,23 +1,19 @@
 <template>
-  <div>
-    {{ validation.$anyError }}
-    <v-text-field
-      type="password"
-      v-model="password"
-      :label="label"
-      :class="className"
-      :error="validation.$anyError"
-      :error-messages="getErrors"
-      outline
-    ></v-text-field>
-  </div>
+  <v-text-field
+    type="password"
+    v-model="password"
+    :label="name"
+    :class="className"
+    :error-messages="formErrors"
+    outline
+  ></v-text-field>
 </template>
 
 <script>
-import FormMixin from '@/modules/shared/mixins/form.mixin'
+import FormErrorsMixin from '@/modules/shared/mixins/form-errors.mixin'
 
 export default {
-  mixins: [ FormMixin ],
+  mixins: [ FormErrorsMixin ],
   props: {
     name       : { type: String, default: 'password' },
     className  : { type: String, default: 'gdb-password-input' },
