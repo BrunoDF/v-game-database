@@ -1,6 +1,6 @@
 // ROUTES
 export const LOGIN_ROUTE_NAME       = 'login'
-export const AFTER_LOGIN_ROUTE_NAME = 'about'
+export const AFTER_LOGIN_ROUTE_NAME = 'games'
 export const REDIRECT_ROUTE_NAME    = 'games'
 
 // IGDB

@@ -3,10 +3,13 @@ import axiosDefaults from 'axios/lib/defaults'
 
 import { IGDB_BASE_URL } from './constants';
 
+import store from '@/config/store'
+
 // Request interceptor
 export const requestAuthInterceptor = axios.interceptors.request.use(
   config => {
-    const token = 'ca94fd027732ee92609eb738f1f17232' // store.token;
+    const token = store.getters['login/token']
+
     if (token)
       config.headers.common['user-key'] = token
 
