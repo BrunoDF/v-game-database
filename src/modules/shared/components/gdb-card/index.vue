@@ -1,15 +1,17 @@
 <template>
-  <router-link :to="{ name: 'game-details', params: { id: game.id } }">
-    <div class="gdb-card" >
-      <div class="gdb-card-image">
-        <gdb-image :src="game.cover_path" />
+  <div>
+    <router-link :to="{ name: 'game-details', params: { id: game.id } }">
+      <div class="gdb-card" >
+        <div class="gdb-card-image">
+          <gdb-image :src="game.cover_path" />
+        </div>
+        <div class="gdb-card-info">
+          {{ game.name }}
+          {{ game.rating }}
+        </div>
       </div>
-      <div class="gdb-card-info">
-        {{ game.name }}
-        {{ game.rating }}
-      </div>
-    </div>
-  </router-link>
+    </router-link>
+  </div>
 </template>
 
 <script>
@@ -41,12 +43,12 @@ $imageSize: 160px;
 
   &:hover {
     .gdb-card-image {
-      opacity: .3;
+      opacity: .8;
     }
   }
 
   .gdb-card-image {
-    opacity: .1;
+    opacity: .5;
     position: absolute;
     height: 100%;
     width: 100%;

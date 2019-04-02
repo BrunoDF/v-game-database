@@ -1,16 +1,33 @@
 <template>
   <v-layout row align-center>
     <v-flex xs12>
-      <gdb-card-wrapper>
+      <div>
+        <v-btn color="pink" dark left fab @click="logout">
+          <font-awesome-icon size="2x" :icon="['fa', 'sign-out-alt']" />
+        </v-btn>
+      </div>
+
+      <gdb-card-wrapper :platform="PS4">
+        <p v-if="mostPopularForPS4.error">{{ mostPopularForPS4.error }}</p>
+        <gdb-card-list :list="mostPopularForPS4.data" />
+      </gdb-card-wrapper>
+
+      <gdb-card-wrapper :platform="XONE">
+        <p v-if="mostPopularForXbox.error">{{ mostPopularForXbox.error }}</p>
+        <gdb-card-list :list="mostPopularForXbox.data" />
+      </gdb-card-wrapper>
+
+      <gdb-card-wrapper :platform="SWITCH">
         <p v-if="mostPopularForSwitch.error">{{ mostPopularForSwitch.error }}</p>
         <gdb-card-list :list="mostPopularForSwitch.data" />
       </gdb-card-wrapper>
+
     </v-flex>
   </v-layout>
 </template>
 
 <script>
-import { IGDB_PLATFORMS } from '@/config/constants'
+import { LOGIN_ROUTE_NAME, IGDB_PLATFORMS } from '@/config/constants'
 
 import DisposeBag from '@/config/dispose-bag'
 
@@ -51,6 +68,12 @@ export default {
     },
     mostPopularForSwitch() {
       return this.$store.state.games.mostPopular[IGDB_PLATFORMS.SWITCH]
+    }
+  },
+  methods: {
+    async logout() {
+      await this.$store.dispatch('login/removeToken')
+      this.$router.push({ name: LOGIN_ROUTE_NAME })
     }
   }
 }

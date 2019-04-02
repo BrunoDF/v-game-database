@@ -7,7 +7,7 @@
       :color="'#FFFFFF'"
     />
     <div class="gdb-card-list-item" v-for="item in list" :key="item.id">
-      <gdb-card :game="item" />
+      <gdb-card-list-item :item="item" />
     </div>
   </div>
 </template>
@@ -16,14 +16,15 @@
 import { LoopingRhombusesSpinner } from 'epic-spinners'
 import WheelHorizontalScroll from '@/modules/shared/directives/wheel-horizontal-scroll.directive'
 
-import GdbCard from './gdb-card'
+import GdbCardListItem from './gdb-card-list-item'
+
 
 export default {
   directives: {
     ...WheelHorizontalScroll
   },
   components: {
-    'gdb-card': GdbCard,
+    'gdb-card-list-item': GdbCardListItem,
     'looping-rhombuses-spinner': LoopingRhombusesSpinner
   },
   props: {
@@ -33,16 +34,14 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-$cardSpacing: 30px;
-
 .gdb-card-list {
   display: flex;
-  min-height: 220px;
+  min-height: $cardHeight + ($cardSpacing * 2);
   justify-content: left;
   align-items: center;
   flex-grow: 1;
   overflow-x: auto;
-  padding: 20px 0;
+  padding: $cardSpacing 0;
 
   &::-webkit-scrollbar {
     display: none;

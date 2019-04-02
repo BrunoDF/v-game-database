@@ -1,0 +1,11 @@
+.flip-leave { transform: rotateY(0deg) }
+
+.flip-enter-active, .flip-leave-active {
+  transition: transform .3s linear;
+}
+
+.flip-leave-to { transform: rotateY(-90deg) }
+
+.flip-enter { transform: rotateY(90deg)  }
+
+.flip-enter-to { transform: rotateY(0deg)  }

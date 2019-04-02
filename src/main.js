@@ -1,7 +1,7 @@
 // STYLES
 import 'normalize.css'
-import '@/styles/general.scss'
 import 'vuetify/dist/vuetify.min.css'
+import '@/styles/general.scss'
 
 // LIBS
 import Vue from 'vue'

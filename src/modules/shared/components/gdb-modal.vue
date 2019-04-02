@@ -31,8 +31,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-$closeButtonSize: 24px;
-
 .gdb-modal {
   position: fixed;
   top: 0;
@@ -65,12 +63,11 @@ $closeButtonSize: 24px;
       color: #333333;
 
       .gdb-modal-content-header-title {
-        width: calc(100% - #{$closeButtonSize});
+        width: 100%
       }
 
       .gdb-modal-content-header-close {
         cursor: pointer;
-        width: $closeButtonSize;
       }
     }
   }
