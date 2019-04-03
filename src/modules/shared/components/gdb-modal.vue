@@ -1,14 +1,16 @@
 <template>
-  <div class="gdb-modal">
-    <div class="gdb-modal-backdrop" @click="close"></div>
-    <div class="gdb-modal-content">
-      <div class="gdb-modal-content-header">
-        <span v-if="title" class="gdb-modal-content-header-title">{{ title }}</span>
-        <font-awesome-icon :icon="['fa', 'times-circle']" class="gdb-modal-content-header-close" @click="close" />
+  <transition name="fade">
+    <div class="gdb-modal">
+      <div class="gdb-modal-backdrop" @click="close"></div>
+      <div class="gdb-modal-content">
+        <div class="gdb-modal-content-header">
+          <span v-if="title" class="gdb-modal-content-header-title">{{ title }}</span>
+          <font-awesome-icon :icon="['fa', 'times-circle']" class="gdb-modal-content-header-close" @click="close" />
+        </div>
+        <slot></slot>
       </div>
-      <slot></slot>
     </div>
-  </div>
+  </transition>
 </template>
 
 <script>
@@ -45,7 +47,8 @@ export default {
   }
 
   .gdb-modal-content {
-    background-color: #ffffff;
+    background-color: #303030;
+    color: #ffffff;
     border-radius: 8px;
     position: absolute;
     top: 50px;
@@ -60,7 +63,6 @@ export default {
       flex-wrap: nowrap;
       padding: 15px 20px;
       font-size: 24px;
-      color: #333333;
 
       .gdb-modal-content-header-title {
         width: 100%

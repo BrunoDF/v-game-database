@@ -45,6 +45,6 @@ export default {
 
 <style lang="scss" scoped>
 .gdb-card-list-item {
-  perspective: 3000px;
+  perspective: $cardHeight * 10;
 }
 </style>
