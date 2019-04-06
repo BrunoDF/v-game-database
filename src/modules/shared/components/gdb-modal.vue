@@ -47,6 +47,8 @@ export default {
   }
 
   .gdb-modal-content {
+    display: flex;
+    flex-flow: column;
     background-color: #303030;
     color: #ffffff;
     border-radius: 8px;
@@ -55,7 +57,7 @@ export default {
     left: 50%;
     transform: translate3d(-50%,0,0);
     width: 600px;
-    min-height: 100px;
+    min-height: 400px;
 
     .gdb-modal-content-header {
       display: flex;

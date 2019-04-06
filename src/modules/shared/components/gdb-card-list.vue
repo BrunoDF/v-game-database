@@ -1,6 +1,6 @@
 <template>
   <div class="gdb-card-list" v-wheel-horizontal-scroll>
-    <looping-rhombuses-spinner
+    <half-circle-spinner
       v-if="!list.length"
       :animation-duration="2000"
       :size="60"
@@ -13,7 +13,7 @@
 </template>
 
 <script>
-import { LoopingRhombusesSpinner } from 'epic-spinners'
+import { HalfCircleSpinner } from 'epic-spinners'
 import WheelHorizontalScroll from '@/modules/shared/directives/wheel-horizontal-scroll.directive'
 
 import GdbCardListItem from './gdb-card-list-item'
@@ -25,7 +25,7 @@ export default {
   },
   components: {
     'gdb-card-list-item': GdbCardListItem,
-    'looping-rhombuses-spinner': LoopingRhombusesSpinner
+    'half-circle-spinner': HalfCircleSpinner
   },
   props: {
     list: { type: Array, required: true }
@@ -51,7 +51,7 @@ export default {
     flex: 0 0 $cardWidth + $cardSpacing;
   }
 
-  .looping-rhombuses-spinner {
+  .half-circle-spinner {
     margin: 0 auto;
   }
 }

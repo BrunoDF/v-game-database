@@ -55,7 +55,7 @@ const mutations = {
 
   errorToken(state, error) {
     const data = { loading: false, token: null, error }
-    Vue.set(state, 'login', data)
+    Vue.set(state, 'authentication', data)
   },
 }
 

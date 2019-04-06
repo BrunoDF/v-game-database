@@ -7,8 +7,9 @@
       <div class="gdb-games-details-view-content-info">
         <span>{{ game.data.name }}</span>
       </div>
+      <gdb-rating :rating="game.data.rating | AsInteger" />
     </div>
-    <looping-rhombuses-spinner
+    <half-circle-spinner
       v-else
       :animation-duration="2000"
       :size="60"
@@ -20,9 +21,12 @@
 <script>
 // import Store from '@/config/store'
 
-import { LoopingRhombusesSpinner } from 'epic-spinners'
+import { HalfCircleSpinner } from 'epic-spinners'
 
 import GdbImage from '@/modules/shared/components/gdb-image'
+import GdbRating from '@/modules/shared/components/gdb-rating'
+
+import AsInteger from '@/modules/shared/filters/as-integer.filter'
 
 import DisposeBag from '@/config/dispose-bag'
 
@@ -60,7 +64,11 @@ export default {
   },
   components: {
     'gdb-image': GdbImage,
-    'looping-rhombuses-spinner': LoopingRhombusesSpinner
+    'gdb-rating': GdbRating,
+    'half-circle-spinner': HalfCircleSpinner
+  },
+  filters: {
+    AsInteger
   },
   computed: {
     game() {
@@ -72,6 +80,10 @@ export default {
 
 <style lang="scss" scoped>
 .gdb-games-details-view {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-grow: 1;
   padding: 20px;
 
   .gdb-games-details-view-content {
@@ -82,6 +94,9 @@ export default {
 
     .gdb-games-details-view-content-image {
       width: 300px;
+      height: 300px;
+      border-radius: 100%;
+      overflow: hidden;
     }
 
     .gdb-games-details-view-content-info {
@@ -90,7 +105,7 @@ export default {
     }
   }
 
-  .looping-rhombuses-spinner {
+  .half-circle-spinner {
     margin: 0 auto;
   }
 }

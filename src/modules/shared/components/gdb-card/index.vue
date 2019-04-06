@@ -6,8 +6,8 @@
           <gdb-image :src="game.cover_path" />
         </div>
         <div class="gdb-card-info">
+          <gdb-rating :rating="game.rating | AsInteger" />
           {{ game.name }}
-          {{ game.rating }}
         </div>
       </div>
     </router-link>
@@ -15,11 +15,19 @@
 </template>
 
 <script>
+import AsInteger from '../../filters/as-integer.filter'
+
 import GdbImage from '../gdb-image'
+import GdbRating from '../gdb-rating'
+
 
 export default {
   components: {
-    'gdb-image': GdbImage
+    'gdb-image': GdbImage,
+    'gdb-rating': GdbRating
+  },
+  filters: {
+    AsInteger
   },
   props: {
     game: { type: Object, required: true }
