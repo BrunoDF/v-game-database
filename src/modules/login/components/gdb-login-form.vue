@@ -29,6 +29,11 @@ export default {
 
 <style lang="scss" scoped>
 .gdb-login-form {
+  .gdb-form-field-wrapper {
+    & /deep/ .v-input__slot {
+      border-color: green;
+    }
+  }
 }
 </style>
 
