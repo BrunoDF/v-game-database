@@ -10,40 +10,33 @@
 </head>
 <body>
   <div id="app">
-    <input type="text" v-model.trim="message" />
-    <input type="text" :value="message" @input="changeMessage" @keyup.enter.space="showAlert" />
-    <p v-once>{{ message }}<p>
-    <p>{{ greeting() }}<p>
-    <a :href="url">Universidade redspark</a>
-    <span v-html="html"></span>
-    <span @mousemove="logCoordinates">Coordenadas: [X]={{ coordinates.x }} / Y={{ coordinates.y }}</span>
+    <div v-if="show">
+      <p>Computed: {{ invertedMessage }}</p>
+      <p>Method: {{ reverseString(message) }}</p>
+    </div>
+    <button type="button" @click="toggleShow">Mostrar/Esconder</button>
   </div>
 
   <script>
     new Vue({
       el: '#app',
       data:{
-        message: 'Começando com VueJS!',
-        url: 'http://dmz.redspark.io/universidade',
-        html: '<p>Acesse agora!</p>',
-        coordinates: {
-          x: 0,
-          y: 0
+        show: true,
+        message: 'Avançando com VueJS!'
+      },
+      computed: {
+        invertedMessage: function() {
+          console.log('Alterou na computed property')
+          return this.message.split('').reverse().join('')
         }
       },
       methods: {
-        showAlert: function() {
-          alert('Teste')
+        toggleShow: function() {
+          this.show = !this.show
         },
-        logCoordinates: function(event) {
-          this.coordinates.x = event.clientX
-          this.coordinates.y = event.clientY
-        },
-        changeMessage: function(event) {
-          this.message = event.target.value
-        },
-        greeting: function() {
-          return this.message
+        reverseString: function(string) {
+          console.log('Alterou no método')
+          return string.split('').reverse().join('')
         }
       }
     })
