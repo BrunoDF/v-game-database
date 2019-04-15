@@ -9,13 +9,14 @@
   <script src="https://unpkg.com/vue"></script>
 </head>
 <body>
-  <div id="app" @mousemove="logCoordinates">
-    <input type="text" @input="changeMessage" @keyup.enter.space="showAlert"/>
+  <div id="app">
+    <input type="text" v-model.trim="message" />
+    <input type="text" :value="message" @input="changeMessage" @keyup.enter.space="showAlert" />
     <p v-once>{{ message }}<p>
     <p>{{ greeting() }}<p>
     <a :href="url">Universidade redspark</a>
     <span v-html="html"></span>
-    <span>Coordenadas: [X]={{ coordinates.x }} / Y={{ coordinates.y }}</span>
+    <span @mousemove="logCoordinates">Coordenadas: [X]={{ coordinates.x }} / Y={{ coordinates.y }}</span>
   </div>
 
   <script>
