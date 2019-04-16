@@ -5,9 +5,6 @@ import GameService from './services/games.service'
 
 import { IGDB_PLATFORMS } from '@/config/constants'
 
-import './types/game.d';
-import './types/platform.d';
-
 const state = {
   details: {
     data: null,
@@ -16,19 +13,16 @@ const state = {
   },
   mostPopular: {
     [IGDB_PLATFORMS.PS4]: {
-      /** @type {Game[]} */
       data: [],
       loading: false,
       error: null
     },
     [IGDB_PLATFORMS.XBOX_ONE]: {
-      /** @type {Game[]} */
       data: [],
       loading: false,
       error: null
     },
     [IGDB_PLATFORMS.SWITCH]: {
-      /** @type {Game[]} */
       data: [],
       loading: false,
       error: null
@@ -66,7 +60,6 @@ const mutations = {
     Vue.set(state, 'details', details)
   },
 
-  /** @param {Game} game */
   setDetails(state, game) {
     const details = { loading: false, data: game, error: null }
     Vue.set(state, 'details', details)
@@ -82,14 +75,11 @@ const mutations = {
     Vue.set(state.mostPopular, platform, mostPopular)
   },
 
-  /** @param {Game[]} games */
-  /** @param {Platform} platform */
   setMostPopular(state, { games, platform }) {
     const mostPopular = { loading: false, data: games, error: null }
     Vue.set(state.mostPopular, platform, mostPopular)
   },
 
-  /** @param {Platform} platform */
   errorMostPopular(state, { error, platform }) {
     const mostPopular = { loading: false, data: [], error }
     Vue.set(state.mostPopular, platform, mostPopular)
