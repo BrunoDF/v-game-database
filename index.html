@@ -19,6 +19,14 @@
       <p>Conteúdo escondido</p>
     </div>
     <button type="button" @click="toggleShow">Mostrar/Esconder</button>
+
+    <div v-for="(language, index) in languages">
+      <p>{{ index }} - {{ language }}</p>
+    </div>
+
+    <template v-for="(value, key) in game">
+      <p>{{ key }} - {{ value }}</p>
+    </template>
   </div>
 
   <script>
@@ -26,7 +34,17 @@
       el: '#app',
       data:{
         show: true,
-        message: 'Avançando com VueJS!'
+        message: 'Avançando com VueJS!',
+        languages: [
+          'Javascript',
+          'Python',
+          'Elixir'
+        ],
+        game: {
+          id: 1,
+          title: 'Super Mario World',
+          releaseYear: 1994
+        }
       },
       computed: {
         invertedMessage: function() {
