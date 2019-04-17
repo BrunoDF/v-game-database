@@ -10,9 +10,13 @@
 </head>
 <body>
   <div id="app">
+    <p>{{ message }}</p>
     <div v-if="show">
       <p>Computed: {{ invertedMessage }}</p>
       <p>Method: {{ reverseString(message) }}</p>
+    </div>
+    <div v-else>
+      <p>Conteúdo escondido</p>
     </div>
     <button type="button" @click="toggleShow">Mostrar/Esconder</button>
   </div>
@@ -28,6 +32,15 @@
         invertedMessage: function() {
           console.log('Alterou na computed property')
           return this.message.split('').reverse().join('')
+        }
+      },
+      watch: {
+        show: function(newValue, oldValue) {
+          console.log(`Valor novo: ${newValue} | Valor antigo: ${oldValue}`)
+
+          setTimeout(() => {
+            this.message = 'Alterado via watcher'
+          }, 2000)
         }
       },
       methods: {
