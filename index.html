@@ -20,7 +20,7 @@
     </div>
     <button type="button" @click="toggleShow">Mostrar/Esconder</button>
 
-    <div v-for="(language, index) in languages">
+    <div v-for="(language, index) in languages" :key="language">
       <p>{{ index }} - {{ language }}</p>
     </div>
 
