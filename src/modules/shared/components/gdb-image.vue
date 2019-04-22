@@ -26,7 +26,7 @@ export default {
   components: {
     'hollow-dots-spinner': HollowDotsSpinner
   },
-  mounted() {
+  created() {
     setTimeout(() => this.loadImage(this.src), 1500)
   },
   data() {

@@ -41,8 +41,6 @@ export default {
   },
   created() {
     this.disposeBag = new DisposeBag()
-  },
-  mounted() {
     const cancelToken = this.disposeBag.token
 
     this.$store.dispatch('games/fetchMostPopular', { platform: IGDB_PLATFORMS.PS4, cancelToken })
