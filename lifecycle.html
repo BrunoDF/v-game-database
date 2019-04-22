@@ -43,18 +43,23 @@
       beforeUpdate() {
         console.log('%cbeforeUpdate', 'background: purple;')
         console.log(`%c[beforeUpdate] Elemento existe: ${!!this.$el}`, 'background: purple;')
+        console.log('%c[beforeUpdate] Permite acesso ao novo estado antes da re-renderização.', 'background: black; color: white;')
       },
       updated() {
         console.log('%cupdated', 'background: purple;')
         console.log(`%c[updated] Elemento existe: ${!!this.$el}`, 'background: purple;')
+        console.log('%c[updated] Aqui é quando o componente re-renderiza. Aqui o elemento já está atualizado no DOM.', 'background: black; color: white;')
       },
       beforeDestroy() {
         console.log('%cbeforeDestroy', 'background: purple;')
         console.log(`%c[beforeDestroy] Elemento existe: ${!!this.$el}`, 'background: purple;')
+        console.log('%c[beforeDestroy] Quando a destruição inicia. Lugar ideal para remover listeners ou subscriptions.', 'background: black; color: white;')
+
       },
       destroyed() {
         console.log('%cdestroyed', 'background: purple;')
         console.log(`%c[destroyed] Elemento existe: ${!!this.$el}`, 'background: purple;')
+        console.log('%c[destroyed] Ciclo de destruição finalizado. Pode realizar algum processo final, como analytics.', 'background: black; color: white;')
       },
       data() {
         return {
