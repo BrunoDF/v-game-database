@@ -17,10 +17,10 @@ const getters = {
 }
 
 const actions = {
-  async fetchToken({ commit }, { username, password, cancelToken }) {
+  async fetchToken({ commit }, { username, password }) {
     try {
       commit('fetchToken')
-      const token = await LoginService.login(username, password, { cancelToken })
+      const token = await LoginService.login(username, password)
       commit('setToken', token)
     } catch(error) {
       commit('errorToken', error)

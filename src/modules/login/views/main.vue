@@ -18,8 +18,6 @@
 </template>
 
 <script>
-import DisposeBag from '@/config/dispose-bag'
-
 import { required } from 'vuelidate/lib/validators'
 import LoginForm from '../components/gdb-login-form'
 
@@ -28,12 +26,6 @@ import { AFTER_LOGIN_ROUTE_NAME } from '@/config/constants'
 export default {
   components: {
     'login-form': LoginForm
-  },
-  created() {
-    this.disposeBag = new DisposeBag()
-  },
-  beforeDestroy() {
-    this.disposeBag.cancel('Login request canceled')
   },
   data() {
     return {
@@ -67,9 +59,7 @@ export default {
   },
   methods: {
     async login(username, password) {
-      const cancelToken = this.disposeBag.token
-
-      await this.$store.dispatch('login/fetchToken', { username, password, cancelToken })
+      await this.$store.dispatch('login/fetchToken', { username, password })
 
       const hasNoError = !this.$store.state.login.authentication.error
 

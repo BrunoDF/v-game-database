@@ -2,9 +2,9 @@ import GamesAPI from '../apis/games.api'
 import Game from '../models/game.model'
 class GamesService {
 
-  async details(id, opts) {
+  async details(id) {
     try {
-      const response = await GamesAPI.details(id, opts)
+      const response = await GamesAPI.details(id)
 
       let game
 
@@ -20,9 +20,9 @@ class GamesService {
     }
   }
 
-  async mostPopularByPlatform(platform, opts) {
+  async mostPopularByPlatform(platform) {
     try {
-      const response = await GamesAPI.mostPopularByPlatform(platform, opts)
+      const response = await GamesAPI.mostPopularByPlatform(platform)
 
       let games = []
 

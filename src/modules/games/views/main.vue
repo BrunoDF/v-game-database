@@ -29,8 +29,6 @@
 <script>
 import { LOGIN_ROUTE_NAME, IGDB_PLATFORMS } from '@/config/constants'
 
-import DisposeBag from '@/config/dispose-bag'
-
 import GdbCardWrapper from '@/modules/games/components/gdb-card-wrapper'
 import GdbCardList from '@/modules/shared/components/gdb-card-list'
 
@@ -40,15 +38,9 @@ export default {
     'gdb-card-list': GdbCardList
   },
   created() {
-    this.disposeBag = new DisposeBag()
-    const cancelToken = this.disposeBag.token
-
-    this.$store.dispatch('games/fetchMostPopular', { platform: IGDB_PLATFORMS.PS4, cancelToken })
-    this.$store.dispatch('games/fetchMostPopular', { platform: IGDB_PLATFORMS.XBOX_ONE, cancelToken })
-    this.$store.dispatch('games/fetchMostPopular', { platform: IGDB_PLATFORMS.SWITCH, cancelToken })
-  },
-  beforeDestroy() {
-    this.disposeBag.cancel('Platforms requests canceled')
+    this.$store.dispatch('games/fetchMostPopular', { platform: IGDB_PLATFORMS.PS4 })
+    this.$store.dispatch('games/fetchMostPopular', { platform: IGDB_PLATFORMS.XBOX_ONE })
+    this.$store.dispatch('games/fetchMostPopular', { platform: IGDB_PLATFORMS.SWITCH })
   },
   data() {
     return {

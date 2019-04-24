@@ -28,40 +28,25 @@ import GdbRating from '@/modules/shared/components/gdb-rating'
 
 import AsInteger from '@/modules/shared/filters/as-integer.filter'
 
-import DisposeBag from '@/config/dispose-bag'
-
 export default {
   beforeRouteEnter(to, from, next) {
     next(vm => {
-      vm.disposeBag = new DisposeBag()
-
       const { id } = to.params
-      const cancelToken = vm.disposeBag.token
-      vm.$store.dispatch('games/fetchDetails', { id, cancelToken })
+      vm.$store.dispatch('games/fetchDetails', { id })
     })
   },
   // async beforeRouteEnter(to, from, next) {
-  //   const disposeBag = new DisposeBag()
-
   //   const { id } = to.params
-  //   const cancelToken = disposeBag.token
-  //   await Store.dispatch('games/fetchDetails', { id, cancelToken })
-
-  //   next(vm => vm.disposeBag = disposeBag)
-  // },
-  // beforeRouteUpdate(to, from, next) {
-  //   this.disposeBag = new DisposeBag()
-
-  //   const { id } = to.params
-  //   const cancelToken = this.disposeBag.token
-  //   this.$store.dispatch('games/fetchDetails', { id, cancelToken })
+  //   await Store.dispatch('games/fetchDetails', { id })
 
   //   next()
   // },
-  beforeRouteLeave(to, from, next) {
-    this.disposeBag.cancel('Game detail request canceled')
-    next()
-  },
+  // beforeRouteUpdate(to, from, next) {
+  //   const { id } = to.params
+  //   this.$store.dispatch('games/fetchDetails', { id })
+
+  //   next()
+  // },
   components: {
     'gdb-image': GdbImage,
     'gdb-rating': GdbRating,

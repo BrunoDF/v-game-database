@@ -2,9 +2,9 @@ import LoginAPI from '../apis/login.api'
 
 class LoginService {
 
-  async login(username, password, opts) {
+  async login(username, password) {
     try {
-      const response = await LoginAPI.login(username, password, opts)
+      const response = await LoginAPI.login(username, password)
 
       const token = response.headers.authorization
 

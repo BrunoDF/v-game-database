@@ -2,6 +2,8 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import store from './store'
 
+import disposeBag from './dispose-bag'
+
 import { LOGIN_ROUTE_NAME, AFTER_LOGIN_ROUTE_NAME, REDIRECT_ROUTE_NAME } from './constants'
 
 Vue.use(Router)
@@ -13,7 +15,14 @@ const router = new Router({
 })
 
 // GUARD
+router.beforeResolve((to, from, next) => {
+  disposeBag.dispose('Requests cancelled')
+
+  next()
+})
+
 router.beforeEach((to, from, next) => {
+
   const authRequired = to.matched.some(route => route.meta.auth)
   const authenticated = store.getters['login/isLoggedIn']
 
@@ -29,6 +38,10 @@ router.beforeEach((to, from, next) => {
   }
 
   next(opts)
+})
+
+router.afterEach(() => {
+  disposeBag.create()
 })
 
 export default router
