@@ -27,7 +27,7 @@
 </template>
 
 <script>
-import { LOGIN_ROUTE_NAME, IGDB_PLATFORMS } from '@/config/constants'
+import { IGDB_PLATFORMS } from '@/config/constants'
 
 import GdbCardWrapper from '@/modules/games/components/gdb-card-wrapper'
 import GdbCardList from '@/modules/shared/components/gdb-card-list'
@@ -61,9 +61,8 @@ export default {
     }
   },
   methods: {
-    async logout() {
-      await this.$store.dispatch('login/removeToken')
-      this.$router.push({ name: LOGIN_ROUTE_NAME })
+    logout() {
+      this.$store.dispatch('login/removeToken')
     }
   }
 }

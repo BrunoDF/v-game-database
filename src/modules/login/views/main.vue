@@ -2,30 +2,40 @@
   <v-layout row wrap align-center>
     <v-flex xs8 offset-xs2 md2 offset-md5>
       <v-snackbar
+        color="error"
         v-model="snackbar.show"
         :timeout="snackbar.timeout"
       >
         {{ authenticationError }}
       </v-snackbar>
 
-      <v-form @submit.prevent="submit" novalidate>
+      <half-circle-spinner
+        v-if="loading || isLoggedIn"
+        :animation-duration="2000"
+        :size="60"
+        :color="'#999999'"
+      />
+
+      <v-form v-else @submit.prevent="submit" novalidate>
         <login-form v-model="form.loginForm" :validation="$v.form.loginForm" />
 
         <v-btn block outline color="indigo" type="submit" :disabled="!isFormValid">Login</v-btn>
       </v-form>
+
     </v-flex>
   </v-layout>
 </template>
 
 <script>
+import { HalfCircleSpinner } from 'epic-spinners'
+
 import { required } from 'vuelidate/lib/validators'
 import LoginForm from '../components/gdb-login-form'
 
-import { AFTER_LOGIN_ROUTE_NAME } from '@/config/constants'
-
 export default {
   components: {
-    'login-form': LoginForm
+    'login-form': LoginForm,
+    'half-circle-spinner': HalfCircleSpinner
   },
   data() {
     return {
@@ -42,6 +52,12 @@ export default {
     }
   },
   computed: {
+    isLoggedIn() {
+      return this.$store.getters['login/isLoggedIn']
+    },
+    loading() {
+      return this.$store.state.login.authentication.loading
+    },
     authenticationError() {
       return this.$store.state.login.authentication.error && this.$store.state.login.authentication.error.message
     },
@@ -58,13 +74,8 @@ export default {
     }
   },
   methods: {
-    async login(username, password) {
-      await this.$store.dispatch('login/fetchToken', { username, password })
-
-      const hasNoError = !this.$store.state.login.authentication.error
-
-      if (hasNoError)
-        this.$router.push({ name: AFTER_LOGIN_ROUTE_NAME })
+    login(username, password) {
+      this.$store.dispatch('login/fetchToken', { username, password })
     },
     submit() {
       this.$v.form.$touch()
@@ -82,3 +93,10 @@ export default {
   }
 }
 </script>
+
+<style lang="scss" scoped>
+  .half-circle-spinner {
+    margin: 0 auto;
+  }
+</style>
+

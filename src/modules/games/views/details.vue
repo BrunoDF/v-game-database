@@ -9,6 +9,9 @@
       </div>
       <gdb-rating :rating="game.data.rating | AsInteger" />
     </div>
+
+    <p v-else-if="game.error">{{ game.error.message }}</p>
+
     <half-circle-spinner
       v-else
       :animation-duration="2000"

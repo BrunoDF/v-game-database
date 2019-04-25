@@ -16,7 +16,7 @@ const router = new Router({
 
 // GUARD
 router.beforeResolve((to, from, next) => {
-  disposeBag.dispose('Requests cancelled')
+  disposeBag.dispose('Route changed')
 
   next()
 })

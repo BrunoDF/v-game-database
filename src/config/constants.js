@@ -15,3 +15,8 @@ export const IGDB_PLATFORMS = {
   XBOX_ONE: 49,
   SWITCH: 130
 }
+
+// HTTP ERRORS
+export const HTTP_ERRORS = {
+  UNAUTHORIZED: 401
+}

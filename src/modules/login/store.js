@@ -1,5 +1,8 @@
 import Vue from 'vue'
 
+import { LOGIN_ROUTE_NAME, AFTER_LOGIN_ROUTE_NAME } from '@/config/constants'
+
+import Router from '@/config/router'
 import store from '@/config/store'
 import LoginService from './services/login.service'
 
@@ -22,6 +25,8 @@ const actions = {
       commit('fetchToken')
       const token = await LoginService.login(username, password)
       commit('setToken', token)
+
+      Router.push({ name: AFTER_LOGIN_ROUTE_NAME })
     } catch(error) {
       commit('errorToken', error)
     }
@@ -31,6 +36,8 @@ const actions = {
     try {
       LoginService.logout()
       commit('removeToken')
+
+      Router.push({ name: LOGIN_ROUTE_NAME })
     } catch(error) {
       commit('errorToken', error)
     }
