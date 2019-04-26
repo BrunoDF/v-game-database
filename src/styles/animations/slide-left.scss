@@ -1,0 +1,7 @@
+.slide-left-enter-active, .slide-left-leave-active {
+  transition: opacity .5s, transform .5s;
+}
+.slide-left-enter, .slide-left-leave-to {
+  transform: translate3d(10%,0,0);
+  opacity: 0;
+}

@@ -6,10 +6,9 @@ class GamesService {
   async details(id) {
     const response = await GamesAPI.details(id)
 
-    let [ game ] = [].concat(response.data)
-    game = new Game(game)
+    const [ result ] = [].concat(response.data)
 
-    return game
+    return new Game(result)
   }
 
   async mostPopularByPlatform(platform) {

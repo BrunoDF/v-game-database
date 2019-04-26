@@ -5,24 +5,22 @@ router.addRoutes([
     path: '/game',
     name: 'games',
     meta: { auth: true },
-    components: {
-      page: () => import(/* webpackChunkName: 'games' */ './views/main')
-    }
-  },
-
-  {
-    path: '/game/:id',
-    name: 'game-details',
-    meta: {
-      auth: true,
-      showModal: true,
-      modalOptions: {
-        title: 'Detalhes'
+    component: () => import(/* webpackChunkName: 'games' */ './views/main'),
+    children: [
+      {
+        path: ':id',
+        name: 'game-details',
+        meta: {
+          modalOptions: {
+            show: true,
+            title: 'Detalhes'
+          }
+        },
+        components: {
+          modal: () => import(/* webpackChunkName: 'game-details' */ './views/details')
+        }
       }
-    },
-    components: {
-      page: () => import(/* webpackChunkName: 'games' */ './views/main'),
-      modal: () => import(/* webpackChunkName: 'game-details' */ './views/details')
-    }
+    ]
   }
+
 ])

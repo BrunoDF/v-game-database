@@ -6,9 +6,11 @@
       :size="60"
       :color="'#FFFFFF'"
     />
-    <div class="gdb-card-list-item" v-for="item in list" :key="item.id">
-      <gdb-card-list-item :item="item" />
-    </div>
+    <transition-group name="slide-left" tag="ul" class="gdb-card-list-item-wrapper">
+      <li class="gdb-card-list-item" v-for="item in list" :key="item.id">
+        <gdb-card-list-item :item="item" />
+      </li>
+    </transition-group>
   </div>
 </template>
 
@@ -47,8 +49,13 @@ export default {
     display: none;
   }
 
-  .gdb-card-list-item {
-    flex: 0 0 $cardWidth + $cardSpacing;
+  .gdb-card-list-item-wrapper {
+    display: flex;
+
+    .gdb-card-list-item {
+      list-style: none;
+      flex: 0 0 $cardWidth + $cardSpacing;
+    }
   }
 
   .half-circle-spinner {

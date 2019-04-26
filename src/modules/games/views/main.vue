@@ -7,21 +7,16 @@
         </v-btn>
       </div>
 
-      <gdb-card-wrapper :platform="PS4">
-        <p v-if="mostPopularForPS4.error">{{ mostPopularForPS4.error }}</p>
-        <gdb-card-list :list="mostPopularForPS4.data" />
-      </gdb-card-wrapper>
+      <template v-for="platform in platforms">
+        <gdb-card-wrapper :platform="platform" :key="platform">
+          <p v-if="mostPopular[platform].error">{{ mostPopular[platform].error }}</p>
+          <gdb-card-list :list="mostPopular[platform].data" />
+        </gdb-card-wrapper>
+      </template>
 
-      <gdb-card-wrapper :platform="XONE">
-        <p v-if="mostPopularForXbox.error">{{ mostPopularForXbox.error }}</p>
-        <gdb-card-list :list="mostPopularForXbox.data" />
-      </gdb-card-wrapper>
-
-      <gdb-card-wrapper :platform="SWITCH">
-        <p v-if="mostPopularForSwitch.error">{{ mostPopularForSwitch.error }}</p>
-        <gdb-card-list :list="mostPopularForSwitch.data" />
-      </gdb-card-wrapper>
-
+      <gdb-modal v-if="showModal">
+        <router-view name="modal" />
+      </gdb-modal>
     </v-flex>
   </v-layout>
 </template>
@@ -29,35 +24,30 @@
 <script>
 import { IGDB_PLATFORMS } from '@/config/constants'
 
+import GdbModal from '@/modules/shared/components/gdb-modal'
 import GdbCardWrapper from '@/modules/games/components/gdb-card-wrapper'
 import GdbCardList from '@/modules/shared/components/gdb-card-list'
 
 export default {
   components: {
     'gdb-card-wrapper' : GdbCardWrapper,
-    'gdb-card-list': GdbCardList
+    'gdb-card-list': GdbCardList,
+    'gdb-modal': GdbModal
   },
   created() {
-    this.$store.dispatch('games/fetchMostPopular', { platform: IGDB_PLATFORMS.PS4 })
-    this.$store.dispatch('games/fetchMostPopular', { platform: IGDB_PLATFORMS.XBOX_ONE })
-    this.$store.dispatch('games/fetchMostPopular', { platform: IGDB_PLATFORMS.SWITCH })
+    this.platforms.map(platform => this.$store.dispatch('games/fetchMostPopular', { platform }))
   },
   data() {
     return {
-      PS4: IGDB_PLATFORMS.PS4,
-      XONE: IGDB_PLATFORMS.XBOX_ONE,
-      SWITCH: IGDB_PLATFORMS.SWITCH
+      platforms: [ IGDB_PLATFORMS.PS4, IGDB_PLATFORMS.XBOX_ONE, IGDB_PLATFORMS.SWITCH ]
     }
   },
   computed: {
-    mostPopularForPS4() {
-      return this.$store.state.games.mostPopular[IGDB_PLATFORMS.PS4]
+    showModal() {
+      return this.$route.meta.modalOptions && this.$route.meta.modalOptions.show
     },
-    mostPopularForXbox() {
-      return this.$store.state.games.mostPopular[IGDB_PLATFORMS.XBOX_ONE]
-    },
-    mostPopularForSwitch() {
-      return this.$store.state.games.mostPopular[IGDB_PLATFORMS.SWITCH]
+    mostPopular() {
+      return this.$store.state.games.mostPopular
     }
   },
   methods: {

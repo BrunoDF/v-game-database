@@ -1,7 +1,7 @@
 <template>
-  <div class="gdb-platform-wrapper" :class="platformClass">
+  <div class="gdb-platform-wrapper" :class="className">
     <div class="gdb-platform-wrapper-icon">
-      <font-awesome-icon :icon="['fab', platformName]" />
+      <font-awesome-icon :icon="['fab', iconName]" />
     </div>
     <slot></slot>
   </div>
@@ -9,40 +9,26 @@
 
 <script>
 import { IGDB_PLATFORMS } from '@/config/constants'
+
 export default {
   props: {
     platform: { type: Number, required: true }
   },
+  data() {
+    return {
+      platforms: {
+        [IGDB_PLATFORMS.PS4]: 'playstation',
+        [IGDB_PLATFORMS.XBOX_ONE]: 'xbox',
+        [IGDB_PLATFORMS.SWITCH]: 'nintendo-switch'
+      }
+    }
+  },
   computed: {
-    platformName() {
-      let platformName;
-      switch(this.platform) {
-        case IGDB_PLATFORMS.PS4:
-          platformName = 'playstation'
-          break
-        case IGDB_PLATFORMS.XBOX_ONE:
-          platformName = 'xbox'
-          break
-        case IGDB_PLATFORMS.SWITCH:
-          platformName = 'nintendo-switch'
-          break
-      }
-      return platformName
+    iconName() {
+      return this.platforms[this.platform]
     },
-    platformClass() {
-      let platformClass;
-      switch(this.platform) {
-        case IGDB_PLATFORMS.PS4:
-          platformClass = 'gdb-card-list-platform-ps4'
-          break
-        case IGDB_PLATFORMS.XBOX_ONE:
-          platformClass = 'gdb-card-list-platform-xbox-one'
-          break
-        case IGDB_PLATFORMS.SWITCH:
-          platformClass = 'gdb-card-list-platform-switch'
-          break
-      }
-      return platformClass
+    className() {
+      return `gdb-card-list-platform-${this.iconName}`
     }
   }
 }
@@ -59,15 +45,15 @@ $iconSpaceWidth: 250px;
   flex-grow: 1;
   position: relative;
 
-  &.gdb-card-list-platform-ps4 {
+  &.gdb-card-list-platform-playstation {
     color: #0053da;
   }
 
-  &.gdb-card-list-platform-xbox-one {
+  &.gdb-card-list-platform-xbox {
     color: #107c10;
   }
 
-  &.gdb-card-list-platform-switch {
+  &.gdb-card-list-platform-nintendo-switch {
     color: #e60012;
   }
 
