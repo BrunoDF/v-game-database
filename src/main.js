@@ -15,9 +15,6 @@ import router from './config/router'
 // STORE
 import store from './config/store'
 
-// i18n
-import i18n from './config/i18n'
-
 // FontAwesome
 import './config/font-awesome'
 
@@ -40,6 +37,5 @@ Vue.config.productionTip = false
 new Vue({
   router,
   store,
-  i18n,
   render: h => h(App)
 }).$mount('#app')
