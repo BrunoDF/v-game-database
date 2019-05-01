@@ -1,13 +1,20 @@
-function createImage(url, loadHandler, errorHandler) {
-  const img = new Image()
+import axios from 'axios'
 
-  img.onload  = loadHandler
-  img.onerror = errorHandler
-  img.src     = url
+async function preloadImage(url, loadHandler, errorHandler) {
 
-  return img
+  const { data } = await axios.get(url, { responseType: 'blob' })
+
+  const fileReader = new FileReader()
+
+  fileReader.onloadend = loadHandler
+  fileReader.onerror   = errorHandler
+
+  fileReader.readAsDataURL(data)
+
+  return fileReader
+
 }
 
 export default {
-  createImage
+  preloadImage
 }

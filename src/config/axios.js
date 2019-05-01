@@ -1,6 +1,5 @@
 // Libs
 import axios from 'axios'
-import axiosDefaults from 'axios/lib/defaults'
 
 // Constants
 import { LOGIN_ROUTE_NAME, IGDB_BASE_URL, HTTP_ERRORS } from './constants'
@@ -33,9 +32,13 @@ async function responseErrorHandler(error) {
   throw error
 }
 
-// BaseURL
-axiosDefaults.baseURL = IGDB_BASE_URL
+// Axios instance
+const customAxios = axios.create({
+  baseURL: IGDB_BASE_URL
+})
 
 // Interceptors
-axios.interceptors.request.use(requestSuccessHandler, undefined)
-axios.interceptors.response.use(undefined, responseErrorHandler)
+customAxios.interceptors.request.use(requestSuccessHandler, undefined)
+customAxios.interceptors.response.use(undefined, responseErrorHandler)
+
+export default customAxios
