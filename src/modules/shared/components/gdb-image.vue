@@ -39,15 +39,14 @@ export default {
     }
   },
   methods: {
-    loadImage: function(url) {
-      this.image = ImageUtil.createImage(url, this.loadHandler, this.errorHandler)
+    async loadImage(url) {
+      this.image = await ImageUtil.preloadImage(url, this.loadHandler, this.errorHandler)
     },
-    loadHandler: function() {
-      console.log('loaded')
-      this.style.backgroundImage = `url(${ this.src })`
+    loadHandler() {
+      this.style.backgroundImage = `url(${ this.image.result })`
       this.loading = false
     },
-    errorHandler: function(err) {
+    errorHandler(err) {
       console.error(err)
     }
   }

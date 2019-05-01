@@ -1,5 +1,3 @@
-// import axios from 'axios'
-
 const API = {
 
   login(username, password) { // username, password, opts
