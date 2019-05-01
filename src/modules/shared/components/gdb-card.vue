@@ -1,12 +1,19 @@
 <template>
   <div class="gdb-card" >
-    <div class="gdb-card-image" :style="{ backgroundImage: `url(${imageSrc})` }"></div>
+    <div class="gdb-card-image">
+      <gdb-image :src="imageSrc" />
+    </div>
     <div class="gdb-card-info">{{ name }}</div>
   </div>
 </template>
 
 <script>
+import GdbImage from '@/modules/shared/components/gdb-image.vue'
+
 export default {
+  components: {
+    'gdb-image': GdbImage
+  },
   data() {
     return {
       imageSrc: 'https://jovemnerd.com.br/wp-content/uploads/2019/04/thanos-google-easter-egg-760x428.jpg',
