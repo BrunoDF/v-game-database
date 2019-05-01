@@ -15,10 +15,10 @@
 </template>
 
 <script>
-import AsInteger from '../../filters/as-integer.filter'
+import AsInteger from '../filters/as-integer.filter'
 
-import GdbImage from '../gdb-image'
-import GdbRating from '../gdb-rating'
+import GdbImage from './gdb-image'
+import GdbRating from './gdb-rating'
 
 
 export default {
