@@ -1,19 +1,13 @@
 // STYLES
 import 'normalize.css'
-import 'vuetify/dist/vuetify.min.css'
 import '@/styles/general.scss'
 
 // LIBS
 import Vue from 'vue'
 
 // MAIN COMPONENT
-import App from './App.vue'
-
-// ROUTER
-import router from './config/router'
-
-// STORE
-import store from './config/store'
+// import App from './App.vue'
+import './App'
 
 // FontAwesome
 import './config/font-awesome'
@@ -22,20 +16,12 @@ import './config/font-awesome'
 import './config/axios'
 
 // MODULES
-import './config/modules'
-
-// Vuetify
-import './config/vuetify'
-
-// Vuelidate
-import './config/vuelidate'
+// import './config/modules'
 
 // CONFIG
 Vue.config.productionTip = false
 
 // VUE INSTANCE
-new Vue({
-  router,
-  store,
-  render: h => h(App)
-}).$mount('#app')
+// new Vue({
+//   render: h => h(App)
+// }).$mount('#app')

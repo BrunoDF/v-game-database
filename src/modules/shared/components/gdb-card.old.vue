@@ -1,34 +1,16 @@
 <template>
-  <div>
-    <router-link :to="{ name: 'game-details', params: { id: game.id } }">
-      <div class="gdb-card" >
-        <div class="gdb-card-image">
-          <gdb-image :src="game.cover_path" />
-        </div>
-        <div class="gdb-card-info">
-          <gdb-rating :rating="game.rating | AsInteger" />
-          {{ game.name }}
-        </div>
-      </div>
-    </router-link>
+  <div class="gdb-card" >
+    <div class="gdb-card-image">
+      <img :src="game.cover_path" />
+    </div>
+    <div class="gdb-card-info">
+      {{ game.name }}
+    </div>
   </div>
 </template>
 
 <script>
-import AsInteger from '../filters/as-integer.filter'
-
-import GdbImage from './gdb-image'
-import GdbRating from './gdb-rating'
-
-
 export default {
-  components: {
-    'gdb-image': GdbImage,
-    'gdb-rating': GdbRating
-  },
-  filters: {
-    AsInteger
-  },
   props: {
     game: { type: Object, required: true }
   }
