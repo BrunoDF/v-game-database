@@ -23,6 +23,7 @@
 
 <script>
 // import Store from '@/config/store'
+import meta from '@/config/meta'
 
 import { HalfCircleSpinner } from 'epic-spinners'
 
@@ -63,9 +64,11 @@ export default {
 
   //   next()
   // },
-  created() {
+  async created() {
     const { id } = this.$route.params
-    this.$store.dispatch('games/fetchDetails', { id })
+    await this.$store.dispatch('games/fetchDetails', { id })
+    if (this.game.data)
+      meta.setPageTitle(this.game.data.name)
   },
   components: {
     'gdb-image': GdbImage,

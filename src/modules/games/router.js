@@ -4,13 +4,17 @@ router.addRoutes([
   {
     path: '/game',
     name: 'games',
-    meta: { auth: true },
+    meta: {
+      title: 'Games',
+      auth: true
+    },
     component: () => import(/* webpackChunkName: 'games' */ './views/main'),
     children: [
       {
         path: ':id',
         name: 'game-details',
         meta: {
+          title: 'Carregando...',
           modalOptions: {
             show: true,
             title: 'Detalhes'

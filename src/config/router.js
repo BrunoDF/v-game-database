@@ -1,10 +1,11 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import store from './store'
 
 import disposeBag from './dispose-bag'
+import auth from './auth'
+import meta from './meta'
 
-import { LOGIN_ROUTE_NAME, AFTER_LOGIN_ROUTE_NAME, REDIRECT_ROUTE_NAME } from './constants'
+import { REDIRECT_ROUTE_NAME } from './constants'
 
 Vue.use(Router)
 
@@ -22,25 +23,13 @@ router.beforeResolve((to, from, next) => {
 })
 
 router.beforeEach((to, from, next) => {
+  const routeAccess = auth.validateRouteAccess(to)
 
-  const authRequired = to.matched.some(route => route.meta.auth)
-  const authenticated = store.getters['login/isLoggedIn']
-
-  const authRequiredAndNotAuthenticated = authRequired && !authenticated
-  const authenticatedInLoginRoute = authenticated && to.name === LOGIN_ROUTE_NAME
-
-  let opts = true
-
-  if (authRequiredAndNotAuthenticated) {
-    opts = { name: LOGIN_ROUTE_NAME }
-  } else if (authenticatedInLoginRoute) {
-    opts = { name: AFTER_LOGIN_ROUTE_NAME }
-  }
-
-  next(opts)
+  next(routeAccess)
 })
 
 router.afterEach(() => {
+  meta.setPageTitle()
   disposeBag.create()
 })
 

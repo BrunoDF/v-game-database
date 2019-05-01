@@ -3,6 +3,9 @@ export const LOGIN_ROUTE_NAME       = 'login'
 export const AFTER_LOGIN_ROUTE_NAME = 'games'
 export const REDIRECT_ROUTE_NAME    = 'games'
 
+// LABELS
+export const DEFAULT_TITLE = 'Game database'
+
 // IGDB
 export const IGDB_BASE_URL = process.env.VUE_APP_IGDB_BASE_URL
 export const IGDB_THUMB_BASE_URL = 'https://images.igdb.com/igdb/image/upload/t_thumb_2x/%s.jpg'

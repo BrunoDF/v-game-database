@@ -4,7 +4,10 @@ router.addRoutes([
   {
     path: '/',
     name: 'login',
-    meta: { auth: false },
+    meta: {
+      title: 'Login',
+      auth: false
+    },
     component: () => import(/* webpackChunkName: 'login' */ './views/main')
   }
 ])
