@@ -21,7 +21,7 @@ import ImageUtil from '@/modules/shared/utils/image.util'
 
 export default {
   props: {
-    src    : { type: String, required: true },
+    src: { type: String, required: true },
   },
   components: {
     'hollow-dots-spinner': HollowDotsSpinner

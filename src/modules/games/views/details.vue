@@ -2,7 +2,7 @@
   <div class="gdb-games-details-view">
     <div v-if="game.data" class="gdb-games-details-view-content">
       <div class="gdb-games-details-view-content-image">
-        <gdb-image :src="game.data.cover_path"></gdb-image>
+        <gdb-image :src="game.data.cover_path" />
       </div>
       <div class="gdb-games-details-view-content-info">
         <span>{{ game.data.name }}</span>
@@ -32,24 +32,41 @@ import GdbRating from '@/modules/shared/components/gdb-rating'
 import AsInteger from '@/modules/shared/filters/as-integer.filter'
 
 export default {
-  beforeRouteEnter(to, from, next) {
-    next(vm => {
-      const { id } = to.params
-      vm.$store.dispatch('games/fetchDetails', { id })
-    })
-  },
+  // Dispatch without waiting and enter route
+  // beforeRouteEnter(to, from, next) {
+  //   const { id } = to.params
+  //   Store.dispatch('games/fetchDetails', { id })
+
+  //   next()
+  // },
+
+  // DONT DO IT
+  // beforeRouteEnter(to, from, next) {
+  //   next(vm => {
+  //     const { id } = to.params
+  //     vm.$store.dispatch('games/fetchDetails', { id })
+  //   })
+  // },
+
+  // Dispatch enter route after waiting
   // async beforeRouteEnter(to, from, next) {
   //   const { id } = to.params
   //   await Store.dispatch('games/fetchDetails', { id })
 
   //   next()
   // },
+
+  // Dispatch when changing route ID
   // beforeRouteUpdate(to, from, next) {
   //   const { id } = to.params
   //   this.$store.dispatch('games/fetchDetails', { id })
 
   //   next()
   // },
+  created() {
+    const { id } = this.$route.params
+    this.$store.dispatch('games/fetchDetails', { id })
+  },
   components: {
     'gdb-image': GdbImage,
     'gdb-rating': GdbRating,
