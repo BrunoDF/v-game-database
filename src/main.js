@@ -7,7 +7,7 @@ import Vue from 'vue'
 
 // MAIN COMPONENT
 import App from './App.vue'
-// import './App'
+
 
 // FontAwesome
 import './config/font-awesome'

@@ -9,6 +9,11 @@ module.exports = {
         target: 'https://api-v3.igdb.com',
         pathRewrite: {'^/api/': '/'},
         changeOrigin: true
+      },
+      '^/image': {
+        target: 'https://images.igdb.com',
+        pathRewrite: {'^/image/': '/igdb/image/upload/'},
+        changeOrigin: true
       }
     }
   },
