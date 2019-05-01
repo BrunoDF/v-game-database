@@ -31,7 +31,7 @@ export default {
 .gdb-login-form {
   .gdb-form-field-wrapper {
     & /deep/ .v-input__slot {
-      border-color: green;
+      border-color: orange;
     }
   }
 }
