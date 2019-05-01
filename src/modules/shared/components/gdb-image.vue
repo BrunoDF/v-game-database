@@ -39,11 +39,11 @@ export default {
     }
   },
   methods: {
-    loadImage(url) {
-      this.image = ImageUtil.createImage(url, this.loadHandler, this.errorHandler)
+    async loadImage(url) {
+      this.image = await ImageUtil.preloadImage(url, this.loadHandler, this.errorHandler)
     },
     loadHandler() {
-      this.style.backgroundImage = `url(${ this.src })`
+      this.style.backgroundImage = `url(${ this.image.result })`
       this.loading = false
     },
     errorHandler(err) {

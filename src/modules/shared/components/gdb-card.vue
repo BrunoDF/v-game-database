@@ -16,7 +16,7 @@ export default {
   },
   data() {
     return {
-      imageSrc: 'https://jovemnerd.com.br/wp-content/uploads/2019/04/thanos-google-easter-egg-760x428.jpg',
+      imageSrc: 'https://images.igdb.com/igdb/image/upload/t_cover_big_2x/co1izz.jpg',
       name: 'Título do card'
     }
   }
