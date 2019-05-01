@@ -6,8 +6,8 @@ import '@/styles/general.scss'
 import Vue from 'vue'
 
 // MAIN COMPONENT
-// import App from './App.vue'
-import './App'
+import App from './App.vue'
+// import './App'
 
 // FontAwesome
 import './config/font-awesome'
@@ -16,12 +16,12 @@ import './config/font-awesome'
 import './config/axios'
 
 // MODULES
-// import './config/modules'
+import './config/modules'
 
 // CONFIG
 Vue.config.productionTip = false
 
 // VUE INSTANCE
-// new Vue({
-//   render: h => h(App)
-// }).$mount('#app')
+new Vue({
+  render: h => h(App)
+}).$mount('#app')
