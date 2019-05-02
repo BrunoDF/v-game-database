@@ -8,9 +8,7 @@
         :color="'#FFFFFF'"
       />
     </div>
-    <!-- <transition name="fade"> -->
-      <div class="gdb-image" v-if="!loading" :style="style" />
-    <!-- </transition> -->
+    <div class="gdb-image" v-if="!loading" :style="style" />
   </div>
 </template>
 
