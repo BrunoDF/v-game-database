@@ -16,7 +16,7 @@ export default {
   },
   data() {
     return {
-      imageSrc: 'https://images.igdb.com/igdb/image/upload/t_cover_big_2x/co1izz.jpg',
+      imageSrc: `${process.env.VUE_APP_IGDB_IMAGE_BASE_URL}/t_cover_big_2x/co1izz.jpg`,
       name: 'Título do card'
     }
   }
