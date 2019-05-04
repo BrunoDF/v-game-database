@@ -13,13 +13,13 @@ export const IGDB_IMAGE_BASE_URL          = `${process.env.VUE_APP_IGDB_IMAGE_BA
 export const IGDB_NO_COVER_IMAGE_BASE_URL = `${process.env.VUE_APP_IGDB_IMAGE_BASE_URL}/t_thumb_2x/nocover_qhhlj6.jpg`
 
 // PLATFORMS
-export const IGDB_PLATFORMS = {
+export const IGDB_PLATFORMS = Object.freeze({
   PS4: 48,
   XBOX_ONE: 49,
   SWITCH: 130
-}
+})
 
 // HTTP ERRORS
-export const HTTP_ERRORS = {
+export const HTTP_ERRORS = Object.freeze({
   UNAUTHORIZED: 401
-}
+})
