@@ -9,8 +9,9 @@
 </template>
 
 <script>
-import GdbCard from './gdb-card'
-import GdbCardPlaceholder from './gdb-card-placeholder'
+import Game from '@/modules/games/models/game.model'
+import GdbCard from '@/modules/shared/components/gdb-card.vue'
+import GdbCardPlaceholder from '@/modules/shared/components//gdb-card-placeholder.vue'
 
 export default {
   components: {
@@ -18,7 +19,7 @@ export default {
     'gdb-card-placeholder': GdbCardPlaceholder
   },
   props: {
-    item: { type: Object, required: true }
+    item: { type: Game, required: true }
   },
   data() {
     return {

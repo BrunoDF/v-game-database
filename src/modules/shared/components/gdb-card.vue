@@ -15,10 +15,11 @@
 </template>
 
 <script>
-import AsInteger from '../filters/as-integer.filter'
+import AsInteger from '@/modules/shared/filters/as-integer.filter'
 
-import GdbImage from './gdb-image'
-import GdbRating from './gdb-rating'
+import Game from '@/modules/games/models/game.model'
+import GdbImage from '@/modules/shared/components/gdb-image.vue'
+import GdbRating from '@/modules/shared/components/gdb-rating.vue'
 
 
 export default {
@@ -30,7 +31,7 @@ export default {
     AsInteger
   },
   props: {
-    game: { type: Object, required: true }
+    game: { type: Game, required: true }
   }
 }
 </script>

@@ -30,7 +30,7 @@
 import { HalfCircleSpinner } from 'epic-spinners'
 
 import { required } from 'vuelidate/lib/validators'
-import LoginForm from '../components/gdb-login-form'
+import LoginForm from '@/modules/login/components/gdb-login-form.vue'
 
 export default {
   components: {

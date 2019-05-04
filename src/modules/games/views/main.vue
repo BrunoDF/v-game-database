@@ -24,9 +24,9 @@
 <script>
 import { IGDB_PLATFORMS } from '@/config/constants'
 
-import GdbModal from '@/modules/shared/components/gdb-modal'
-import GdbCardWrapper from '@/modules/games/components/gdb-card-wrapper'
-import GdbCardList from '@/modules/shared/components/gdb-card-list'
+import GdbModal from '@/modules/shared/components/gdb-modal.vue'
+import GdbCardWrapper from '@/modules/games/components/gdb-card-wrapper.vue'
+import GdbCardList from '@/modules/shared/components/gdb-card-list.vue'
 
 export default {
   components: {

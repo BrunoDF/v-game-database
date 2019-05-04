@@ -18,7 +18,8 @@
 import { HalfCircleSpinner } from 'epic-spinners'
 import WheelHorizontalScroll from '@/modules/shared/directives/wheel-horizontal-scroll.directive'
 
-import GdbCardListItem from './gdb-card-list-item'
+import Game from '@/modules/games/models/game.model'
+import GdbCardListItem from '@/modules/shared/components/gdb-card-list-item.vue'
 
 
 export default {
@@ -30,7 +31,11 @@ export default {
     'half-circle-spinner': HalfCircleSpinner
   },
   props: {
-    list: { type: Array, required: true }
+    list: {
+      type: Array,
+      required: true,
+      validator: (prop) => prop.every(item => item instanceof Game)
+    }
   }
 }
 </script>

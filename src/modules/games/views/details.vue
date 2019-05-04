@@ -27,8 +27,8 @@ import meta from '@/config/meta'
 
 import { HalfCircleSpinner } from 'epic-spinners'
 
-import GdbImage from '@/modules/shared/components/gdb-image'
-import GdbRating from '@/modules/shared/components/gdb-rating'
+import GdbImage from '@/modules/shared/components/gdb-image.vue'
+import GdbRating from '@/modules/shared/components/gdb-rating.vue'
 
 import AsInteger from '@/modules/shared/filters/as-integer.filter'
 

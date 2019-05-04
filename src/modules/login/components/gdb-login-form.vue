@@ -11,8 +11,8 @@
 </template>
 
 <script>
-import TextInput from '@/modules/shared/components/gdb-form-components/gdb-text-input'
-import PasswordInput from '@/modules/shared/components/gdb-form-components/gdb-password-input'
+import TextInput from '@/modules/shared/components/gdb-form-components/gdb-text-input.vue'
+import PasswordInput from '@/modules/shared/components/gdb-form-components/gdb-password-input.vue'
 
 export default {
   components: {
