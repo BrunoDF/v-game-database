@@ -34,6 +34,7 @@ export default {
     list: {
       type: Array,
       required: true,
+      default: () => [],
       validator: (prop) => prop.every(item => item instanceof Game)
     }
   }
