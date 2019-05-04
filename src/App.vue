@@ -1,13 +1,13 @@
 <template>
-  <gdb-card />
+  <games-main-view />
 </template>
 
 <script>
-import GdbCard from '@/modules/shared/components/gdb-card.vue'
+import GamesMainView from '@/modules/games/views/main.vue'
 
 export default {
   components: {
-    'gdb-card': GdbCard
+    'games-main-view': GamesMainView
   }
 }
 </script>
