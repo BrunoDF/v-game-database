@@ -3,7 +3,7 @@ import axios from 'axios'
 class DisposeBag {
 
   get token() {
-    return this._source.token
+    return this._source && this._source.token
   }
 
   create() {
