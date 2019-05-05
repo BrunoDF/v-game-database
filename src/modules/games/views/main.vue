@@ -39,7 +39,7 @@ export default {
   },
   data() {
     return {
-      platforms: [ IGDB_PLATFORMS.PS4, IGDB_PLATFORMS.XBOX_ONE, IGDB_PLATFORMS.SWITCH ]
+      platforms: Object.values(IGDB_PLATFORMS),
     }
   },
   computed: {
