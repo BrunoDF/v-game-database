@@ -12,7 +12,11 @@ import { IGDB_PLATFORMS } from '@/config/constants'
 
 export default {
   props: {
-    platform: { type: Number, required: true }
+    platform: {
+      type: Number,
+      required: true,
+      validator: (number) => Object.values(IGDB_PLATFORMS).includes(number)
+    }
   },
   data() {
     return {
@@ -28,7 +32,7 @@ export default {
       return this.platforms[this.platform]
     },
     className() {
-      return `gdb-card-list-platform-${this.iconName}`
+      return `gdb-platform-wrapper-${this.iconName}`
     }
   }
 }
@@ -45,15 +49,15 @@ $iconSpaceWidth: 250px;
   flex-grow: 1;
   position: relative;
 
-  &.gdb-card-list-platform-playstation {
+  &.gdb-platform-wrapper-playstation {
     color: #0053da;
   }
 
-  &.gdb-card-list-platform-xbox {
+  &.gdb-platform-wrapper-xbox {
     color: #107c10;
   }
 
-  &.gdb-card-list-platform-nintendo-switch {
+  &.gdb-platform-wrapper-nintendo-switch {
     color: #e60012;
   }
 

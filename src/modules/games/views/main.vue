@@ -8,10 +8,10 @@
       </div>
 
       <template v-for="platform in platforms">
-        <gdb-card-wrapper :platform="platform" :key="platform">
+        <gdb-platform-wrapper :platform="platform" :key="platform">
           <p v-if="mostPopular[platform].error">{{ mostPopular[platform].error }}</p>
           <gdb-card-list :list="mostPopular[platform].data" />
-        </gdb-card-wrapper>
+        </gdb-platform-wrapper>
       </template>
 
       <gdb-modal v-if="showModal">
@@ -25,12 +25,12 @@
 import { IGDB_PLATFORMS } from '@/config/constants'
 
 import GdbModal from '@/modules/shared/components/gdb-modal.vue'
-import GdbCardWrapper from '@/modules/games/components/gdb-card-wrapper.vue'
+import GdbPlatformWrapper from '@/modules/games/components/gdb-platform-wrapper.vue'
 import GdbCardList from '@/modules/shared/components/gdb-card-list.vue'
 
 export default {
   components: {
-    'gdb-card-wrapper' : GdbCardWrapper,
+    'gdb-platform-wrapper' : GdbPlatformWrapper,
     'gdb-card-list': GdbCardList,
     'gdb-modal': GdbModal
   },
