@@ -29,72 +29,7 @@
     </template>
   </div>
 
-  <div id="lifeCycle" @click="destroy" @mouseover="update" test="test">
-    <p>{{ message }}</p>
-  </div>
-
   <script>
-    new Vue({
-      el: '#lifeCycle',
-      beforeCreate() {
-        console.log('%c[beforeCreate]', 'background: purple;')
-        console.log(`%c[beforeCreate] Elemento existe: ${!!this.$el}`, 'background: purple;')
-        console.log('%c[beforeCreate] Sem acesso ao data e methods. Watchers não inicializados.', 'background: black; color: white;')
-      },
-      created() {
-        console.log('%ccreated', 'background: purple;')
-        console.log(`%c[created] Elemento existe: ${!!this.$el}`, 'background: purple;')
-        console.log('%c[created] Com acesso ao data e methods. Watchers já inicializados.', 'background: black; color: white;')
-        console.log(`%c[created] data: ${JSON.stringify(this.$data)}`, 'background: black; color: white;')
-        this.message = 'Mudando a mensagem no created hook'
-        console.log(`%c[created] data: ${JSON.stringify(this.$data)}`, 'background: black; color: white;')
-        console.log('%c[created] Chamadas assíncronas geralmente acontecem aqui', 'background: black; color: white;')
-      },
-      beforeMount() {
-        console.log('%cbeforeMount', 'background: purple;')
-        console.log(`%c[beforeMount] Elemento existe: ${!!this.$el}`, 'background: purple;')
-        console.log('%c[beforeMount] Chamado antes do render inicial, mas depois da compilação do template.', 'background: black; color: white;')
-      },
-      mounted() {
-        console.log('%cmounted', 'background: purple;')
-        console.log(`%c[mounted] Elemento existe: ${!!this.$el}`, 'background: purple;')
-        console.log('%c[mounted] Acesso a todas as propriedades reativa e acesso ao elemento.', 'background: black; color: white;')
-      },
-      beforeUpdate() {
-        console.log('%cbeforeUpdate', 'background: purple;')
-        console.log(`%c[beforeUpdate] Elemento existe: ${!!this.$el}`, 'background: purple;')
-      },
-      updated() {
-        console.log('%cupdated', 'background: purple;')
-        console.log(`%c[updated] Elemento existe: ${!!this.$el}`, 'background: purple;')
-      },
-      beforeDestroy() {
-        console.log('%cbeforeDestroy', 'background: purple;')
-        console.log(`%c[beforeDestroy] Elemento existe: ${!!this.$el}`, 'background: purple;')
-      },
-      destroyed() {
-        console.log('%cdestroyed', 'background: purple;')
-        console.log(`%c[destroyed] Elemento existe: ${!!this.$el}`, 'background: purple;')
-      },
-      data() {
-        return {
-          message: 'Conhecendo ciclo de vida'
-        }
-      },
-      props: {
-        test: String
-      },
-      methods: {
-        update(event) {
-          this.message = this.message === 'Conhecendo ciclo de vida' ? 'Testando ciclo de vida' : 'Conhecendo ciclo de vida'
-        },
-        destroy() {
-          this.$destroy()
-          this.$el.parentNode.removeChild(this.$el)
-        }
-      }
-    })
-
     new Vue({
       el: '#app',
       data:{

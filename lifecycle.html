@@ -9,7 +9,7 @@
   <script src="https://unpkg.com/vue"></script>
 </head>
 <body>
-  <div id="app" @click="destroy" @mouseover="update" test="test">
+  <div id="app" @click="destroy" @mouseover="update">
     <p>{{ message }}</p>
   </div>
 
@@ -65,9 +65,6 @@
         return {
           message: 'Conhecendo ciclo de vida'
         }
-      },
-      props: {
-        test: String
       },
       methods: {
         update(event) {
