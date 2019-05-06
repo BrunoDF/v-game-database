@@ -14,7 +14,7 @@
     <input type="text" :value="message" @input="changeMessage" @keyup.enter.space="showAlert" />
     <p v-once>{{ message }}<p>
     <p>{{ greeting() }}<p>
-    <a :href="url">Universidade redspark</a>
+    <a :href="url" target="_blank">Universidade redspark</a>
     <span v-html="html"></span>
     <span @mousemove="logCoordinates">Coordenadas: [X]={{ coordinates.x }} / Y={{ coordinates.y }}</span>
   </div>
