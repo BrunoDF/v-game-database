@@ -9,65 +9,65 @@
   <script src="https://unpkg.com/vue"></script>
 </head>
 <body>
-  <div id="app" @click="destroy" @mouseover="update" test="test">
+  <div id="app">
     <p>{{ message }}</p>
+    <button @click="update">Update</button>
+    <button @click="destroy">Destroy</button>
   </div>
 
   <script>
     new Vue({
       el: '#app',
-      beforeCreate() {
-        console.log('%c[beforeCreate]', 'background: purple;')
-        console.log(`%c[beforeCreate] Elemento existe: ${!!this.$el}`, 'background: purple;')
-        console.log('%c[beforeCreate] Sem acesso ao data e methods. Watchers não inicializados.', 'background: black; color: white;')
-      },
-      created() {
-        console.log('%ccreated', 'background: purple;')
-        console.log(`%c[created] Elemento existe: ${!!this.$el}`, 'background: purple;')
-        console.log('%c[created] Com acesso ao data e methods. Watchers já inicializados.', 'background: black; color: white;')
-        console.log(`%c[created] data: ${JSON.stringify(this.$data)}`, 'background: black; color: white;')
-        this.message = 'Mudando a mensagem no created hook'
-        console.log(`%c[created] data: ${JSON.stringify(this.$data)}`, 'background: black; color: white;')
-        console.log('%c[created] Chamadas assíncronas geralmente acontecem aqui', 'background: black; color: white;')
-      },
-      beforeMount() {
-        console.log('%cbeforeMount', 'background: purple;')
-        console.log(`%c[beforeMount] Elemento existe: ${!!this.$el}`, 'background: purple;')
-        console.log('%c[beforeMount] Chamado antes do render inicial, mas depois da compilação do template.', 'background: black; color: white;')
-      },
-      mounted() {
-        console.log('%cmounted', 'background: purple;')
-        console.log(`%c[mounted] Elemento existe: ${!!this.$el}`, 'background: purple;')
-        console.log('%c[mounted] Acesso a todas as propriedades reativas e acesso ao elemento.', 'background: black; color: white;')
-      },
-      beforeUpdate() {
-        console.log('%cbeforeUpdate', 'background: purple;')
-        console.log(`%c[beforeUpdate] Elemento existe: ${!!this.$el}`, 'background: purple;')
-        console.log('%c[beforeUpdate] Permite acesso ao novo estado antes da re-renderização.', 'background: black; color: white;')
-      },
-      updated() {
-        console.log('%cupdated', 'background: purple;')
-        console.log(`%c[updated] Elemento existe: ${!!this.$el}`, 'background: purple;')
-        console.log('%c[updated] Aqui é quando o componente re-renderiza. Aqui o elemento já está atualizado no DOM.', 'background: black; color: white;')
-      },
-      beforeDestroy() {
-        console.log('%cbeforeDestroy', 'background: purple;')
-        console.log(`%c[beforeDestroy] Elemento existe: ${!!this.$el}`, 'background: purple;')
-        console.log('%c[beforeDestroy] Quando a destruição inicia. Lugar ideal para remover listeners ou subscriptions.', 'background: black; color: white;')
+      // beforeCreate() {
+      //   console.log('%c[beforeCreate]', 'background: yellow; color: black;')
+      //   console.log(`%c[beforeCreate] Elemento existe: ${!!this.$el}`, 'background: purple;')
+      //   console.log('%c[beforeCreate] Sem acesso ao data e methods. Watchers não inicializados.', 'background: black; color: white;')
+      //   console.log(`%c[beforeCreate] data: ${this.$data}`, 'background: black; color: white;')
+      // },
+      // created() {
+      //   console.log('%ccreated', 'background: yellow; color: black;')
+      //   console.log(`%c[created] Elemento existe: ${!!this.$el}`, 'background: purple;')
+      //   console.log('%c[created] Com acesso ao data e methods. Watchers já inicializados.', 'background: black; color: white;')
+      //   console.log(`%c[created] data: ${JSON.stringify(this.$data)}`, 'background: black; color: white;')
+      //   this.message = 'Mudando a mensagem no created hook'
+      //   console.log(`%c[created] data: ${JSON.stringify(this.$data)}`, 'background: black; color: white;')
+      //   console.log('%c[created] Chamadas assíncronas geralmente acontecem aqui', 'background: black; color: white;')
+      // },
+      // beforeMount() {
+      //   console.log('%cbeforeMount', 'background: yellow; color: black;')
+      //   console.log(`%c[beforeMount] Elemento existe: ${!!this.$el}`, 'background: purple;')
+      //   console.log('%c[beforeMount] Chamado antes do render inicial, mas depois da compilação do template.', 'background: black; color: white;')
+      // },
+      // mounted() {
+      //   console.log('%cmounted', 'background: yellow; color: black;')
+      //   console.log(`%c[mounted] Elemento existe: ${!!this.$el}`, 'background: purple;')
+      //   console.log('%c[mounted] Acesso a todas as propriedades reativas e acesso ao elemento.', 'background: black; color: white;')
+      // },
+      // beforeUpdate() {
+      //   console.log('%cbeforeUpdate', 'background: yellow; color: black;')
+      //   console.log(`%c[beforeUpdate] Elemento existe: ${!!this.$el}`, 'background: purple;')
+      //   console.log('%c[beforeUpdate] Permite acesso ao novo estado antes da re-renderização.', 'background: black; color: white;')
+      // },
+      // updated() {
+      //   console.log('%cupdated', 'background: yellow; color: black;')
+      //   console.log(`%c[updated] Elemento existe: ${!!this.$el}`, 'background: purple;')
+      //   console.log('%c[updated] Aqui é quando o componente re-renderiza. Aqui o elemento já está atualizado no DOM.', 'background: black; color: white;')
+      // },
+      // beforeDestroy() {
+      //   console.log('%cbeforeDestroy', 'background: yellow; color: black;')
+      //   console.log(`%c[beforeDestroy] Elemento existe: ${!!this.$el}`, 'background: purple;')
+      //   console.log('%c[beforeDestroy] Quando a destruição inicia. Lugar ideal para remover listeners ou subscriptions.', 'background: black; color: white;')
 
-      },
-      destroyed() {
-        console.log('%cdestroyed', 'background: purple;')
-        console.log(`%c[destroyed] Elemento existe: ${!!this.$el}`, 'background: purple;')
-        console.log('%c[destroyed] Ciclo de destruição finalizado. Pode realizar algum processo final, como analytics.', 'background: black; color: white;')
-      },
+      // },
+      // destroyed() {
+      //   console.log('%cdestroyed', 'background: yellow; color: black;')
+      //   console.log(`%c[destroyed] Elemento existe: ${!!this.$el}`, 'background: purple;')
+      //   console.log('%c[destroyed] Ciclo de destruição finalizado. Pode realizar algum processo final, como analytics.', 'background: black; color: white;')
+      // },
       data() {
         return {
           message: 'Conhecendo ciclo de vida'
         }
-      },
-      props: {
-        test: String
       },
       methods: {
         update(event) {
