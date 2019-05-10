@@ -8,12 +8,14 @@ function validateRouteAccess(routeTo) {
   const authRequiredAndNotAuthenticated = authRequired && !authenticated
   const authenticatedInLoginRoute       = authenticated && routeTo.name === LOGIN_ROUTE_NAME
 
-  let opts = true
+  let opts
 
   if (authRequiredAndNotAuthenticated) {
     opts = { name: LOGIN_ROUTE_NAME }
   } else if (authenticatedInLoginRoute) {
     opts = { name: AFTER_LOGIN_ROUTE_NAME }
+  } else {
+    opts = true
   }
 
   return opts
