@@ -4,13 +4,15 @@
       <gdb-image :src="imageSrc" />
     </div>
     <div class="gdb-card-info">
-      <gdb-rating :rating="rating" />
+      <gdb-rating :rating="rating | asInteger" />
       {{ name }}
     </div>
   </div>
 </template>
 
 <script>
+import asInteger from '@/modules/shared/filters/as-integer.filter'
+
 import GdbImage from '@/modules/shared/components/gdb-image.vue'
 import GdbRating from '@/modules/shared/components/gdb-rating.vue'
 
@@ -19,11 +21,14 @@ export default {
     'gdb-image': GdbImage,
     'gdb-rating': GdbRating
   },
+  filters: {
+    asInteger
+  },
   data() {
     return {
       imageSrc: `${process.env.VUE_APP_IGDB_IMAGE_BASE_URL}/t_cover_big_2x/co1izz.jpg`,
       name: 'Título do card',
-      rating: 90
+      rating: 82.57
     }
   }
 }
