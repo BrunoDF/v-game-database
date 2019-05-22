@@ -1,5 +1,9 @@
 <template>
-  <games-main-view />
+  <v-app dark>
+    <v-container fluid fill-height>
+      <games-main-view />
+    </v-container>
+  </v-app>
 </template>
 
 <script>
