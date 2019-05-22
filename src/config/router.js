@@ -1,9 +1,9 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 
-import disposeBag from './dispose-bag'
-import auth from './auth'
-import meta from './meta'
+// import disposeBag from './dispose-bag'
+// import auth from './auth'
+// import meta from './meta'
 
 import { REDIRECT_ROUTE_NAME } from './constants'
 
@@ -12,25 +12,27 @@ Vue.use(Router)
 const router = new Router({
   mode: 'history',
   base: process.env.BASE_URL,
-  routes: [{ path: '*', redirect: { name: REDIRECT_ROUTE_NAME } }]
+  routes: [
+    { path: '*', redirect: { name: REDIRECT_ROUTE_NAME } }
+  ]
 })
 
-// GUARD
-router.beforeResolve((to, from, next) => {
-  disposeBag.dispose('Route changed')
+// // GUARD
+// router.beforeResolve((to, from, next) => {
+//   disposeBag.dispose('Route changed')
 
-  next()
-})
+//   next()
+// })
 
-router.beforeEach((to, from, next) => {
-  const routeAccess = auth.validateRouteAccess(to)
+// router.beforeEach((to, from, next) => {
+//   const routeAccess = auth.validateRouteAccess(to)
 
-  next(routeAccess)
-})
+//   next(routeAccess)
+// })
 
-router.afterEach(() => {
-  meta.setPageTitle()
-  disposeBag.create()
-})
+// router.afterEach(() => {
+//   meta.setPageTitle()
+//   disposeBag.create()
+// })
 
 export default router
