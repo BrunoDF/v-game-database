@@ -1,13 +1,13 @@
 <template>
   <div class="gdb-card-list" v-wheel-horizontal-scroll>
     <half-circle-spinner
-      v-if="!list.length"
+      v-if="!gameList.length"
       :animation-duration="2000"
       :size="60"
       :color="'#CCCCCC'"
     />
     <ul class="gdb-card-list-item-wrapper">
-      <li class="gdb-card-list-item" v-for="game in list" :key="game.id">
+      <li class="gdb-card-list-item" v-for="game in gameList" :key="game.id">
         <gdb-flipper-card :game="game" />
       </li>
     </ul>
@@ -31,11 +31,11 @@ export default {
     'half-circle-spinner': HalfCircleSpinner
   },
   props: {
-    list: {
+    gameList: {
       type: Array,
       required: true,
       default: () => [],
-      validator: (list) => list.every(item => item instanceof Game)
+      validator: (gameList) => gameList.every(game => game instanceof Game)
     }
   }
 }

@@ -2,7 +2,7 @@
   <div class="game-main-view">
     <template v-for="platform in platforms">
       <gdb-platform-wrapper :platform="platform" :key="platform">
-        <gdb-card-list :list="games[platform]" />
+        <gdb-card-list :game-list="games[platform]" />
       </gdb-platform-wrapper>
     </template>
   </div>

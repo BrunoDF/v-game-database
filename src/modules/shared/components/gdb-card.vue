@@ -4,18 +4,22 @@
       <gdb-image :src="game.cover_path" />
     </div>
     <div class="gdb-card-info">
-      <gdb-rating :rating="game.rating" />
+      <gdb-rating :rating="game.rating | asInteger" />
       {{ game.name }}
     </div>
   </div>
 </template>
 
 <script>
+import asInteger from '@/modules/shared/filters/as-integer.filter'
 import Game from '@/modules/games/models/game.model'
 import GdbImage from '@/modules/shared/components/gdb-image.vue'
 import GdbRating from '@/modules/shared/components/gdb-rating.vue'
 
 export default {
+  filters: {
+    asInteger
+  },
   components: {
     'gdb-image': GdbImage,
     'gdb-rating': GdbRating
