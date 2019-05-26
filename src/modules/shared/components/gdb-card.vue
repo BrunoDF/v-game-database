@@ -1,12 +1,16 @@
 <template>
-  <div class="gdb-card" >
-    <div class="gdb-card-image">
-      <gdb-image :src="game.cover_path" />
-    </div>
-    <div class="gdb-card-info">
-      <gdb-rating :rating="game.rating | asInteger" />
-      {{ game.name }}
-    </div>
+  <div>
+    <router-link :to="{ name: 'game-details', params: { id: game.id } }">
+      <div class="gdb-card" >
+        <div class="gdb-card-image">
+          <gdb-image :src="game.cover_path" />
+        </div>
+        <div class="gdb-card-info">
+          <gdb-rating :rating="game.rating | asInteger" />
+          {{ game.name }}
+        </div>
+      </div>
+    </router-link>
   </div>
 </template>
 

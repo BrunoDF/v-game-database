@@ -3,7 +3,7 @@ import Router from 'vue-router'
 
 // import disposeBag from './dispose-bag'
 // import auth from './auth'
-// import meta from './meta'
+import meta from './meta'
 
 import { REDIRECT_ROUTE_NAME } from './constants'
 
@@ -30,9 +30,9 @@ const router = new Router({
 //   next(routeAccess)
 // })
 
-// router.afterEach(() => {
-//   meta.setPageTitle()
-//   disposeBag.create()
-// })
+router.afterEach(() => {
+  meta.setPageTitle()
+  // disposeBag.create()
+})
 
 export default router

@@ -6,6 +6,10 @@
           <gdb-card-list :game-list="games[platform]" />
         </gdb-platform-wrapper>
       </template>
+
+      <gdb-modal v-if="showModal">
+        <router-view name="modal" />
+      </gdb-modal>
     </v-flex>
   </v-layout>
 </template>
@@ -16,19 +20,27 @@ import Vue from 'vue'
 import { IGDB_PLATFORMS } from '@/config/constants'
 
 import GamesService from '@/modules/games/services/games.service'
+
+import GdbModal from '@/modules/shared/components/gdb-modal'
 import GdbPlatformWrapper from '@/modules/games/components/gdb-platform-wrapper.vue'
 import GdbCardList from '@/modules/shared/components/gdb-card-list.vue'
 
 export default {
   components: {
     'gdb-platform-wrapper': GdbPlatformWrapper,
-    'gdb-card-list': GdbCardList
+    'gdb-card-list': GdbCardList,
+    'gdb-modal': GdbModal
   },
   async created() {
     this.platforms.map(async (platform) => {
       const result = await GamesService.mostPopularByPlatform(platform)
       Vue.set(this.games, platform, result)
     })
+  },
+  computed: {
+    showModal() {
+      return this.$route.meta.modalOptions && this.$route.meta.modalOptions.show
+    }
   },
   data() {
     return {

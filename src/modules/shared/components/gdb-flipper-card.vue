@@ -1,5 +1,5 @@
 <template>
-  <div class="gdb-card-list-item" @click="toggleFlip">
+  <div class="gdb-card-list-item">
     <transition name="flip" mode="out-in">
       <keep-alive>
         <component :is="currentComponent" :game="game" />
@@ -21,19 +21,12 @@ export default {
   props: {
     game: { type: Game, required: true }
   },
-  data() {
-    return {
-      flipped: false
-    }
-  },
   computed: {
+    flipped() {
+      return parseInt(this.$route.params.id) === this.game.id
+    },
     currentComponent() {
       return this.flipped ? 'gdb-card-placeholder' : 'gdb-card'
-    }
-  },
-  methods: {
-    toggleFlip() {
-      this.flipped = !this.flipped
     }
   }
 }
