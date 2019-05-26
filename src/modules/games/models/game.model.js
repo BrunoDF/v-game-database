@@ -5,7 +5,7 @@ export default class Game {
   /**
    * @constructor
    * @param {Object} param
-    * @param {String} param.id
+    * @param {Number} param.id
     * @param {String} param.name
     * @param {Number} param.rating
     * @param {Object} param.cover

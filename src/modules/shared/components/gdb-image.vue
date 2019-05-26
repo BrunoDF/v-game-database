@@ -38,7 +38,9 @@ export default {
   },
   methods: {
     async loadImage(url) {
-      this.image = await ImageUtil.preloadImage(url, this.loadHandler, this.errorHandler)
+      this.loading = true
+      this.image   = undefined
+      this.image   = await ImageUtil.preloadImage(url, this.loadHandler, this.errorHandler)
     },
     loadHandler() {
       this.style.backgroundImage = `url(${ this.image.result })`
@@ -46,6 +48,12 @@ export default {
     },
     errorHandler(err) {
       console.error(err)
+    }
+  },
+  watch: {
+    src(newValue, oldValue) {
+      if (newValue && newValue !== oldValue)
+        this.loadImage(newValue)
     }
   }
 }
