@@ -2,7 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 
 // import disposeBag from './dispose-bag'
-// import auth from './auth'
+import auth from './auth'
 import meta from './meta'
 
 import { REDIRECT_ROUTE_NAME } from './constants'
@@ -24,11 +24,11 @@ const router = new Router({
 //   next()
 // })
 
-// router.beforeEach((to, from, next) => {
-//   const routeAccess = auth.validateRouteAccess(to)
+router.beforeEach((to, from, next) => {
+  const routeAccess = auth.validateRouteAccess(to)
 
-//   next(routeAccess)
-// })
+  next(routeAccess)
+})
 
 router.afterEach(() => {
   meta.setPageTitle()

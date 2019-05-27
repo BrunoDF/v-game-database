@@ -6,5 +6,5 @@ const debug = process.env.NODE_ENV !== 'production'
 Vue.use(Vuex)
 
 export default new Vuex.Store({
-  strict: debug
+  strict: debug // Verifica por mutações diretas no objeto, fora da Store
 })

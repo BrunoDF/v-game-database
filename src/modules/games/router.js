@@ -6,9 +6,10 @@ router.addRoutes([
     path: '/games',
     name: 'games',
     meta: {
-      title: 'Games'
+      title: 'Games',
+      auth: true
     },
-    component: () => import('@/modules/games/views/main.vue'), /* webpackChunkName: 'gamesMainView' */
+    component: () => import(/* webpackChunkName: 'gamesMainView' */ '@/modules/games/views/main.vue'),
     children: [
       {
         path: ':id',
@@ -21,7 +22,7 @@ router.addRoutes([
           }
         },
         components: {
-          modal: () => import('@/modules/games/views/details.vue') /* webpackChunkName: 'gamesDetailsView' */
+          modal: () => import(/* webpackChunkName: 'gamesDetailsView' */ '@/modules/games/views/details.vue')
         }
       }
     ]

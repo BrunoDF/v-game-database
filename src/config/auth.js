@@ -1,9 +1,11 @@
-import store from './store'
+// import store from './store'
+import LoginService from '@/modules/login/services/login.service'
 import { LOGIN_ROUTE_NAME, AFTER_LOGIN_ROUTE_NAME } from './constants'
 
 function validateRouteAccess(routeTo) {
-  const authRequired  = routeTo.matched.some(route => route.meta.auth)
-  const authenticated = store.getters['login/isLoggedIn']
+  const authRequired  = routeTo.meta.auth
+  // const authenticated = store.getters['login/isLoggedIn']
+  const authenticated = LoginService.isLoggedIn()
 
   const authRequiredAndNotAuthenticated = authRequired && !authenticated
   const authenticatedInLoginRoute       = authenticated && routeTo.name === LOGIN_ROUTE_NAME
