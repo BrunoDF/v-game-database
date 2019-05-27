@@ -10,8 +10,6 @@
       <gdb-rating :rating="game.rating | AsInteger" />
     </div>
 
-    <!-- <p v-else-if="game.error">{{ game.error.message }}</p> -->
-
     <half-circle-spinner
       v-else
       :animation-duration="2000"
@@ -22,7 +20,6 @@
 </template>
 
 <script>
-// import Store from '@/config/store'
 import meta from '@/config/meta'
 
 import { HalfCircleSpinner } from 'epic-spinners'
@@ -34,43 +31,6 @@ import GamesService from '@/modules/games/services/games.service'
 import AsInteger from '@/modules/shared/filters/as-integer.filter'
 
 export default {
-  // Dispatch without waiting and enter route
-  // async beforeRouteEnter(to, from, next) {
-  //   const { id } = to.params
-  //   const game = await GamesService.details(id)
-
-  //   next(vm => vm.game = game)
-  // },
-
-  // DONT DO IT
-  // beforeRouteEnter(to, from, next) {
-  //   next(vm => {
-  //     const { id } = to.params
-  //     vm.$store.dispatch('games/fetchDetails', { id })
-  //   })
-  // },
-
-  // Dispatch enter route after waiting
-  // async beforeRouteEnter(to, from, next) {
-  //   const { id } = to.params
-  //   await Store.dispatch('games/fetchDetails', { id })
-
-  //   next()
-  // },
-
-  // Dispatch when changing route ID
-  // async beforeRouteUpdate(to, from, next) {
-  //   const { id } = to.params
-  //   const game = await GamesService.details(id)
-
-  //   this.game = game
-
-  //   next()
-  // },
-  // updated() {
-  //   if (this.game)
-  //     meta.setPageTitle(this.game.name)
-  // },
   async created() {
     const { id } = this.$route.params
     this.game = await GamesService.details(id)
