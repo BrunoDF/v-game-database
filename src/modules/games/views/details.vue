@@ -1,16 +1,16 @@
 <template>
   <div class="gdb-games-details-view">
-    <div v-if="game" class="gdb-games-details-view-content">
+    <div v-if="game.data" class="gdb-games-details-view-content">
       <div class="gdb-games-details-view-content-image">
-        <gdb-image :src="game.cover_path" />
+        <gdb-image :src="game.data.cover_path" />
       </div>
       <div class="gdb-games-details-view-content-info">
-        <span>{{ game.name }}</span>
+        <span>{{ game.data.name }}</span>
       </div>
-      <gdb-rating :rating="game.rating | AsInteger" />
+      <gdb-rating :rating="game.data.rating | AsInteger" />
     </div>
 
-    <!-- <p v-else-if="game.error">{{ game.error.message }}</p> -->
+    <p v-else-if="game.error">{{ game.error.message }}</p>
 
     <half-circle-spinner
       v-else
@@ -22,7 +22,6 @@
 </template>
 
 <script>
-// import Store from '@/config/store'
 import meta from '@/config/meta'
 
 import { HalfCircleSpinner } from 'epic-spinners'
@@ -30,52 +29,14 @@ import { HalfCircleSpinner } from 'epic-spinners'
 import GdbImage from '@/modules/shared/components/gdb-image.vue'
 import GdbRating from '@/modules/shared/components/gdb-rating.vue'
 
-import GamesService from '@/modules/games/services/games.service'
 import AsInteger from '@/modules/shared/filters/as-integer.filter'
 
 export default {
-  // Dispatch without waiting and enter route
-  // async beforeRouteEnter(to, from, next) {
-  //   const { id } = to.params
-  //   const game = await GamesService.details(id)
-
-  //   next(vm => vm.game = game)
-  // },
-
-  // DONT DO IT
-  // beforeRouteEnter(to, from, next) {
-  //   next(vm => {
-  //     const { id } = to.params
-  //     vm.$store.dispatch('games/fetchDetails', { id })
-  //   })
-  // },
-
-  // Dispatch enter route after waiting
-  // async beforeRouteEnter(to, from, next) {
-  //   const { id } = to.params
-  //   await Store.dispatch('games/fetchDetails', { id })
-
-  //   next()
-  // },
-
-  // Dispatch when changing route ID
-  // async beforeRouteUpdate(to, from, next) {
-  //   const { id } = to.params
-  //   const game = await GamesService.details(id)
-
-  //   this.game = game
-
-  //   next()
-  // },
-  // updated() {
-  //   if (this.game)
-  //     meta.setPageTitle(this.game.name)
-  // },
   async created() {
     const { id } = this.$route.params
-    this.game = await GamesService.details(id)
-    if (this.game)
-      meta.setPageTitle(this.game.name)
+    await this.$store.dispatch('games/fetchDetails', { id })
+    if (this.game.data)
+      meta.setPageTitle(this.game.data.name)
   },
   components: {
     'gdb-image': GdbImage,
@@ -85,9 +46,9 @@ export default {
   filters: {
     AsInteger
   },
-  data() {
-    return {
-      game: undefined
+  computed: {
+    game() {
+      return this.$store.state.games.details
     }
   }
 }

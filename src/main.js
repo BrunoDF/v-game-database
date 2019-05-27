@@ -13,7 +13,7 @@ import App from './App.vue'
 import router from './config/router'
 
 // STORE
-// import store from './config/store'
+import store from './config/store'
 
 // FontAwesome
 import './config/font-awesome'
@@ -36,6 +36,6 @@ Vue.config.productionTip = false
 // VUE INSTANCE
 new Vue({
   router,
-  // store,
+  store,
   render: h => h(App)
 }).$mount('#app')
