@@ -1,1 +1,1 @@
-import './router'
+import '@/modules/login/router'

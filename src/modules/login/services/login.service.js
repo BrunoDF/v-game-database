@@ -1,3 +1,4 @@
+
 import LoginAPI from '../apis/login.api'
 
 class LoginService {
@@ -22,7 +23,11 @@ class LoginService {
     return isLoggedIn
   }
 
-  async logout() {
+  getToken() {
+    return localStorage.getItem('token')
+  }
+
+  logout() {
     localStorage.removeItem('token')
   }
 
