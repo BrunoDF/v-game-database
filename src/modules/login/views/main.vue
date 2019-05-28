@@ -16,6 +16,7 @@
         :color="'#999999'"
       />
 
+
       <v-form v-else @submit.prevent="submit" novalidate>
         <login-form v-model="form.loginForm" :validation="$v.form.loginForm" />
 
@@ -33,7 +34,6 @@ import { required } from 'vuelidate/lib/validators'
 import LoginForm from '@/modules/login/components/gdb-login-form.vue'
 
 import { AFTER_LOGIN_ROUTE_NAME } from '@/config/constants'
-import LoginService from '@/modules/login/services/login.service'
 
 export default {
   components: {
@@ -42,9 +42,6 @@ export default {
   },
   data() {
     return {
-      loading: false,
-      isLoggedIn: false,
-      authenticationError: undefined,
       snackbar: {
         show: false,
         timeout: 5000
@@ -58,15 +55,15 @@ export default {
     }
   },
   computed: {
-    // isLoggedIn() {
-    //   return this.$store.getters['login/isLoggedIn']
-    // },
-    // loading() {
-    //   return this.$store.state.login.authentication.loading
-    // },
-    // authenticationError() {
-    //   return this.$store.state.login.authentication.error && this.$store.state.login.authentication.error.message
-    // },
+    isLoggedIn() {
+      return this.$store.getters['login/isLoggedIn']
+    },
+    loading() {
+      return this.$store.state.login.authentication.loading
+    },
+    authenticationError() {
+      return this.$store.state.login.authentication.error && this.$store.state.login.authentication.error.message
+    },
     isFormValid() {
       return !this.$v.form.$pending && !this.$v.form.$error && !this.$v.form.$invalid
     }
@@ -81,17 +78,7 @@ export default {
   },
   methods: {
     async login(username, password) {
-      try {
-        this.loading = true
-        this.authenticationError = undefined
-        await LoginService.login(username, password)
-      } catch(err) {
-        this.authenticationError = err.message
-      } finally {
-        this.loading = false
-        this.isLoggedIn = LoginService.isLoggedIn()
-      }
-      // await this.$store.dispatch('login/fetchToken', { username, password })
+      await this.$store.dispatch('login/fetchToken', { username, password })
     },
     submit() {
       this.$v.form.$touch()

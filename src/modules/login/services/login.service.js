@@ -12,17 +12,11 @@ class LoginService {
     return token
   }
 
-  isLoggedIn() {
-    let isLoggedIn = false
-    const token = localStorage.getItem('token')
-
-    if (token)
-      isLoggedIn = true
-
-    return isLoggedIn
+  getToken() {
+    return localStorage.getItem('token')
   }
 
-  async logout() {
+  logout() {
     localStorage.removeItem('token')
   }
 

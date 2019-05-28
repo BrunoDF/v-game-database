@@ -26,7 +26,6 @@ import Vue from 'vue'
 import { LOGIN_ROUTE_NAME, IGDB_PLATFORMS } from '@/config/constants'
 
 import GamesService from '@/modules/games/services/games.service'
-import LoginService from '@/modules/login/services/login.service'
 
 import GdbModal from '@/modules/shared/components/gdb-modal'
 import GdbPlatformWrapper from '@/modules/games/components/gdb-platform-wrapper.vue'
@@ -45,6 +44,9 @@ export default {
     })
   },
   computed: {
+    isLoggedIn() {
+      return this.$store.getters['login/isLoggedIn']
+    },
     showModal() {
       return this.$route.meta.modalOptions && this.$route.meta.modalOptions.show
     }
@@ -57,9 +59,13 @@ export default {
   },
   methods: {
     async logout() {
-      await LoginService.logout()
-      this.$router.push({ name: LOGIN_ROUTE_NAME })
-      // this.$store.dispatch('login/removeToken')
+      await this.$store.dispatch('login/removeToken')
+    }
+  },
+  watch: {
+    isLoggedIn(newVal) {
+      if (!newVal)
+        this.$router.push({ name: LOGIN_ROUTE_NAME })
     }
   }
 }
